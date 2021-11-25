@@ -1,0 +1,6 @@
+{
+  "utterance": "start the radio station",
+  "expected_data": {
+      "__type__": "mycroft.audio.service.play"
+  }
+}

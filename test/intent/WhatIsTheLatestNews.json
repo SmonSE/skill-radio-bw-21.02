@@ -1,0 +1,7 @@
+{
+  "utterance": "what is the latest radio",
+  "intent_type": "handle_latest_radio",
+  "expected_data": {
+      "__type__": "mycroft.audio.service.play"
+  }
+}

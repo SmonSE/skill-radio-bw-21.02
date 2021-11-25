@@ -1,0 +1,7 @@
+{
+  "utterance": "radio briefing",
+  "intent_type": "PlayTheRadio.intent",
+  "expected_data": {
+      "__type__": "mycroft.audio.service.play"
+  }
+}
