@@ -12,7 +12,7 @@
                         "name": "station",
                         "type": "select",
                         "label": "Options",
-                        "options": "Other URL (please define below)|not_set;[DE] SWR3 Aktuell|SWR3;[DE] Baywatch Berlin|BAY;[DE] Wo Wir Sind Ist Vorne|WWV;[DE] Gag des Tages|GDT;[DE] BigFM|BFM",
+                        "options": "Other URL (please define below)|not_set;[DE] SWR3 Aktuell|SWR3;[DE] Dasding|Dasding;[DE] bigFM|bigFM;[DE] REGENBOGEN|REGNBGN;[DE] Bie neue Welle|Welle;[DE] SWR1|SWR1",
                         "value": "not_set"
                     },
                     {
