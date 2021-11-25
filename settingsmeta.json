@@ -1,0 +1,30 @@
+{
+ "skillMetadata": {
+        "sections": [
+            {
+                "name": "Configuration",
+                "fields": [
+                    {
+                        "type": "label",
+                        "label": "By default this skill play your regional internet radio station. You can select alternate options from the menu to get built-in podcasts, or you can specify a particular URL to use for your Radio station."
+                    },
+                    {
+                        "name": "station",
+                        "type": "select",
+                        "label": "Options",
+                        "options": "Other URL (please define below)|not_set;AP Hourly Radio|AP;[DE] SWR3 Aktuell|SWR3;[DE] Baywatch Berlin|BAY;[DE] Wo Wir Sind Ist Vorne|WWV;[DE] Gag des Tages|GDT;[DE] BigFM|BFM",
+                        "value": "not_set"
+                    },
+                    {
+                        "name": "custom_url",
+                        "type": "text",
+                        "label": "Custom Radio Station url:",
+                        "value": ""
+                    }
+
+                ]
+            }
+        ]
+    }
+
+}
