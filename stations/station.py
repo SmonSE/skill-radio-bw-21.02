@@ -159,33 +159,71 @@ def create_custom_station(station_url):
 
 stations = dict(
 
-    #RadioStation
-    BFM=FileStation('bigFM', 'bigFM',
-                    'https://streams.bigfm.de/bigfm-deutschland-128-mp3', None),
-    DD=FileStation('DASDING', 'DASDING',
-                    'https://liveradio.swr.de/sw282p3/dasding/play.mp3', None),
+    ##RadioStation ## https://radiome.de/baden-wurttemberg  // http://fmstream.org/index.php?i=1352
+    ##Baden-Württemberg (BW)
+    BFM=FileStation('bigFM', 'bigFM', 
+                    'http://streams.bigfm.de/bigfm-bw-128-mp3', BFM.png),
+    DD=FileStation('DASDING', 'DASDING', 
+                    'https://liveradio.swr.de/sw282p3/dasding/play.mp3', DD.png),
     RGB=FileStation('REGNBGN', 'REGENBOGEN',
-                    'https://streams.regenbogen.de/rr-mannheim-128-mp3', None),
+                    'https://streams.regenbogen.de/rr-mannheim-128-mp3', RGB.png),
     SWR3=FileStation('SWR3', 'SWR3 Radio',
-                    'https://liveradio.swr.de/sw282p3/swr3/play.mp3', None),
+                    'https://liveradio.swr.de/sw282p3/swr3/play.mp3', SWR3.png),
     SWR1R=FileStation('SWR1', 'SWR1 BW Radio',
-                    'https://liveradio.swr.de/sw282p3/swr1bw/play.mp3', None),
+                    'https://liveradio.swr.de/sw282p3/swr1bw/play.mp3', SWR1R.png),
     DNW=FileStation('DNW', 'Die neue Welle',
-                    'https://dieneuewelle.cast.addradio.de/dieneuewelle/simulcast/high/stream.mp3', None),
+                    'http://dieneuewelle.cast.addradio.de/dieneuewelle/simulcast/high/stream.mp3', DNW.png),
+    SHL=FileStation('sunshine', 'sunshile live',
+                    'http://stream.sunshine-live.de/hq/mp3-128', SHL.png),
+    SWR4S=FileStation('SWR4 S', 'SWR4 Stuttgart',
+                    'http://swr-swr4-bw.cast.addradio.de/swr/swr4/bw/mp3/128/stream.mp3', SWR4F.png),
+    SWR4K=FileStation('SWR4 KA', 'SWR4 Karlsruhe',
+                    'http://swr-swr4-ka.cast.addradio.de/swr/swr4/ka/mp3/128/stream.mp3', SWR4F.png),
+    ANT=FileStation('antenne1', 'antenne 1',
+                    'http://stream.antenne1.de/a1stg/livestream2.mp3', ANT.png),
+    RD7=FileStation('radio7', 'Radio 7',
+                    'http://radio7server.streamr.ru:8040/radio7256.mp3', RD7.png),
+    SWR2=FileStation('swr2', 'SWR 2',
+                    'https://liveradio.swr.de/sw331ch/swr2', SWR2.png),
+    ENY=FileStation('energy', 'Energy Stuttgart',
+                    'http://media.mediatime.ru:8051/Energy', ENY.png),
+    BAD=FileStation('baden.fm', 'Baden FM',
+                    'http://badenfm.ip-streaming.net:8006/badenfm', BAD.png),
+    EPR=FileStation('europa-park', 'Europa-Park Radio',
+                    'https://rs9.stream24.net/europa-park-radio.mp3', EPR.png),                   
+    SEE=FileStation('seefunk', 'Radio Seefunk',
+                    'http://webradio.radio-seefunk.de:8000/live64', SEE.png),  
+    BHH=FileStation('bigFM Hip Hop', 'big FM Hip Hop',
+                    'http://streams.bigfm.de/bigfm-dhiphopcharts-128-mp3', BFM.png),  
+    BHC=FileStation('bigFM Charts', 'big FM Charts',
+                    'http://ilr.bigfm.de/bigfm-charts-128-mp3', BFM.png), 
+    RLR=FileStation('Rockland', 'Rockland Radio',
+                    'http://stream.rockland.de/rockland.mp3', BFM.png), 
+    SWRA=FileStation('SWR Aktuell', 'SWR Aktuell',
+                    'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', BFM.png), 
 
-    
+    ##Bavaria (BY) 
+       
+
+
+
 )
 # Country Default -> should be change to Region default
 country_defaults = dict(
-    AT='SWR3',
-    AU='SWR3',
+    BW='SWR3',
+    BY='SWR3',
     BE='SWR3',
-    CA='SWR3',
-    DE='SWR3',
-    ES='SWR3',
-    FI='SWR3',
-    PT='SWR3',
-    SE='SWR3',
-    UK='SWR3',
-    US='SWR3',
+    BB='SWR3',
+    HB='SWR3',
+    HH='SWR3',
+    HE='SWR3',
+    MV='SWR3',
+    NI='SWR3',
+    NW='SWR3',
+    RP='SWR3',
+    SL='SWR3',
+    SN='SWR3',
+    ST='SWR3',
+    SH='SWR3',
+    TH='SWR3',
 )
