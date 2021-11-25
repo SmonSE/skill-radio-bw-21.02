@@ -175,7 +175,7 @@ class RadioSkill(CommonPlaySkill):
         Fallback order:
         1. Station defined in Skill Settings
         2. Default station for country
-        3. SWR3 Radio as global default
+        3. big FM Radio as global default
         """
         station = None
         station_code = self.settings.get('station', 'not_set')
@@ -187,7 +187,7 @@ class RadioSkill(CommonPlaySkill):
         if station is None:
             station = self.get_default_station_by_country()
         if station is None:
-            station = stations['SWR3']
+            station = stations['big FM']
         return station
 
     def get_default_station_by_country(self) -> BaseStation:

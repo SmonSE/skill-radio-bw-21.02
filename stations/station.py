@@ -198,9 +198,9 @@ stations = dict(
     BHC=FileStation('bigFM Charts', 'big FM Charts',
                     'http://ilr.bigfm.de/bigfm-charts-128-mp3', BFM.png), 
     RLR=FileStation('Rockland', 'Rockland Radio',
-                    'http://stream.rockland.de/rockland.mp3', BFM.png), 
+                    'http://stream.rockland.de/rockland.mp3', RLR.png), 
     SWRA=FileStation('SWR Aktuell', 'SWR Aktuell',
-                    'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', BFM.png), 
+                    'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', SWRA.png), 
 
     ##Bavaria (BY) 
        
