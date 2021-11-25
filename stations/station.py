@@ -13,56 +13,56 @@
 # limitations under the License.
 """Defines a Radio Station object"""
 
-#from abc import ABC, abstractproperty
+from abc import ABC, abstractproperty
 from builtins import property
 from pathlib import Path
-#rom collections.abc import Callable
+from collections.abc import Callable
 
 import feedparser
 from mycroft.util import LOG
 
-#from .abc import get_abc_url
+from .abc import get_abc_url
 from .ft import get_ft_url
 from .gpb import get_gpb_url
 from .tsf import get_tsf_url
 
 
-#class BaseStation(ABC):
-#    """Abstract Base Class for all Radio Stations."""
-#
-#    def __init__(self, acronym: str, full_name: str, image_file: str = None):
-#        self.acronym = acronym
-#        self.full_name = full_name
-#        self.image_file = image_file
-#
-#    def as_dict(self):
-#        return {
-#            'acronym': self.acronym,
-#            'full_name': self.full_name,
-#            'image_path': str(self.image_path),
-#        }
+class BaseStation(ABC):
+    """Abstract Base Class for all Radio Stations."""
 
-#    @property
-#    def image_path(self) -> Path:
-#        """The absolute path to the stations logo.
+    def __init__(self, acronym: str, full_name: str, image_file: str = None):
+        self.acronym = acronym
+        self.full_name = full_name
+        self.image_file = image_file
 
-#        Note that this currently traverses the path from this file and may
-#        break if this is moved in the file hierarchy.
-#        """
-#        if self.image_file is None:
-#            return None
-#        skill_path = Path(__file__).parent.parent.absolute()
-#        file_path = Path(skill_path, 'images', self.image_file)
-#        if not file_path.exists():
-#            LOG.warning(
-#                f'{self.image_file} could not be found, using default image')
-#            file_path = Path(skill_path, 'images', 'generic.png')
-#        return file_path
-#
-#    @abstractproperty
-#    def media_uri(self) -> str:
-#        """Get the uri for the media file to be played."""
-#        pass
+    def as_dict(self):
+        return {
+            'acronym': self.acronym,
+            'full_name': self.full_name,
+            'image_path': str(self.image_path),
+        }
+
+    @property
+    def image_path(self) -> Path:
+        """The absolute path to the stations logo.
+
+        Note that this currently traverses the path from this file and may
+        break if this is moved in the file hierarchy.
+        """
+        if self.image_file is None:
+            return None
+        skill_path = Path(__file__).parent.parent.absolute()
+        file_path = Path(skill_path, 'images', self.image_file)
+        if not file_path.exists():
+            LOG.warning(
+                f'{self.image_file} could not be found, using default image')
+            file_path = Path(skill_path, 'images', 'generic.png')
+        return file_path
+
+    @abstractproperty
+    def media_uri(self) -> str:
+        """Get the uri for the media file to be played."""
+        pass
 
 
 class FileStation(BaseStation):
