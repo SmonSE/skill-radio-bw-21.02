@@ -210,6 +210,7 @@ stations = dict(
 )
 # Country Default -> should be change to Region default
 country_defaults = dict(
+    DE='SWR3',
     BW='SWR3',
     BY='SWR3',
     BE='SWR3',

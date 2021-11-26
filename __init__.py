@@ -183,7 +183,7 @@ class RadioSkill(CommonPlaySkill):
         if station_code != 'not_set':
             station = stations[station_code]
         elif len(custom_url) > 0:
-            station = stations.get('custom')
+            station = stations.get('SWR3')  # 'custom'
         if station is None:
             station = self.get_default_station_by_country()
         if station is None:
