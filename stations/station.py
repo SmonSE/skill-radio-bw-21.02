@@ -63,10 +63,10 @@ class BaseStation(ABC):
         #    file_path = Path(skill_path, 'images', 'generic.png')
         #return file_path
 
-    #@abstractproperty
-    #def media_uri(self) -> str:
-    #    """Get the uri for the media file to be played."""
-    #    pass
+    @abstractproperty
+    def media_uri(self) -> str:
+        """Get the uri for the media file to be played."""
+        pass
 
 
 class FileStation(BaseStation):
