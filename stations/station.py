@@ -41,27 +41,28 @@ class BaseStation(ABC):
         return {
             'acronym': self.acronym,
             'full_name': self.full_name,
+            'image_path': str(self.image_path),
             'artist_title': str(self.artist_title),
             'radio_text': str(self.radio_text),
             'station_logo_url': str(self.station_logo_url),
         }
 
-    #@property
-    #def image_path(self) -> Path:
-        #"""The absolute path to the stations logo.
-        #
-        #Note that this currently traverses the path from this file and may
-        #break if this is moved in the file hierarchy.
-        #"""
-        #if self.image_file is None:
-        #    return None
-        #skill_path = Path(__file__).parent.parent.absolute()
-        #file_path = Path(skill_path, 'images', self.image_file)
-        #if not file_path.exists():
-        #    LOG.warning(
-        #        f'{self.image_file} could not be found, using default image')
-        #    file_path = Path(skill_path, 'images', 'generic.png')
-        #return file_path
+    @property
+    def image_path(self) -> Path:
+        """The absolute path to the stations logo.
+        
+        Note that this currently traverses the path from this file and may
+        break if this is moved in the file hierarchy.
+        """
+        if self.image_file is None:
+            return None
+        skill_path = Path(__file__).parent.parent.absolute()
+        file_path = Path(skill_path, 'images', self.image_file)
+        if not file_path.exists():
+            LOG.warning(
+                f'{self.image_file} could not be found, using default image')
+            file_path = Path(skill_path, 'images', 'generic.png')
+        return file_path
 
     @abstractproperty
     def media_uri(self) -> str:

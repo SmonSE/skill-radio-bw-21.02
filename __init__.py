@@ -272,7 +272,7 @@ class RadioSkill(CommonPlaySkill):
                 self.CPS_play((media_url, mime))
             self.CPS_send_status(
                 # cast to str for json serialization
-                #image=str(station.image_path),
+                image=str(station.image_path),
                 artist=station.full_name
             )
             self.now_playing = station.full_name
