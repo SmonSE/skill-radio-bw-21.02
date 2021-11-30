@@ -217,6 +217,33 @@ class RadioSkill(CommonPlaySkill):
                 return True
         return False
 
+
+    def show_image(self, url, caption=None,
+                   title=None, fill=None,
+                   override_idle=None, override_animations=False):
+        """Display a GUI page for viewing an image.
+        Args:
+            url (str): Pointer to the image
+            caption (str): A caption to show under the image
+            title (str): A title to display above the image content
+            fill (str): Fill type supports 'PreserveAspectFit',
+            'PreserveAspectCrop', 'Stretch'
+            override_idle (boolean, int):
+                True: Takes over the resting page indefinitely
+                (int): Delays resting page for the specified number of
+                       seconds.
+            override_animations (boolean):
+                True: Disables showing all platform skill animations.
+                False: 'Default' always show animations.
+        """
+        self["image"] = url
+        self["title"] = title
+        self["caption"] = caption
+        self["fill"] = fill
+        self.show_page("SYSTEM_ImageFrame.qml", override_idle,
+                       override_animations)
+
+
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.
         
@@ -231,7 +258,7 @@ class RadioSkill(CommonPlaySkill):
 
             # Add picture to gui
             self.gui.clear()
-            self.gui.show_image(station.image_file)
+            self.gui.show_image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Swr3-logo.svg/320px-Swr3-logo.svg.png", caption=None, title="SWR3 hier könnte auch der RadioText rein", fill=None, override_idle=None, override_animations=False
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station radio text: {station.radio_text}')
             

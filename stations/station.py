@@ -166,7 +166,7 @@ stations = dict(
     BFM=FileStation('bigFM', 'bigFM', 
                     'http://streams.bigfm.de/bigfm-bw-128-mp3', 'BFM.png', 'None'),
     DD=FileStation('DASDING', 'DASDING', 
-                    'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 'DD.png', 'None'),
+                    'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 'DD.png', 'Radiotext muss ich noch hier rein bekommen'),
     RGB=FileStation('REGNBGN', 'REGENBOGEN',
                     'https://streams.regenbogen.de/rr-mannheim-128-mp3', 'RGB.png', 'None'),
     SWR3=FileStation('SWR3', 'SWR3 Radio',
