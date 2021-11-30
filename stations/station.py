@@ -46,7 +46,7 @@ class BaseStation(ABC):
             'station_logo_url': str(self.station_logo_url),
         }
 
-    @property
+    #@property
     #def image_path(self) -> Path:
         #"""The absolute path to the stations logo.
         #
@@ -63,10 +63,10 @@ class BaseStation(ABC):
         #    file_path = Path(skill_path, 'images', 'generic.png')
         #return file_path
 
-    @abstractproperty
-    def media_uri(self) -> str:
-        """Get the uri for the media file to be played."""
-        pass
+    #@abstractproperty
+    #def media_uri(self) -> str:
+    #    """Get the uri for the media file to be played."""
+    #    pass
 
 
 class FileStation(BaseStation):
@@ -162,7 +162,6 @@ def create_custom_station(station_url):
 # They can be added to the list of country defaults below.
 
 stations = dict(
-
     ##RadioStation ## https://radiome.de/baden-wurttemberg  // http://fmstream.org/index.php?i=1352
     ##DEUTSCHLAND (DE)
     #BFM=FileStation(acronym: str, full_name: str, 
