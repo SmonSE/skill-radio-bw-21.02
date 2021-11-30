@@ -203,7 +203,7 @@ stations = dict(
 
     DNW=FileStation('DNW', 'Die neue Welle',
                     'http://dieneuewelle.cast.addradio.de/dieneuewelle/simulcast/high/stream.mp3', 
-                    'None, 
+                    'None', 
                     'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Die_neue_welle_2008.svg/263px-Die_neue_welle_2008.svg.png'),
 
