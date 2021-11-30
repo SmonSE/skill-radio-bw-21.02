@@ -246,8 +246,7 @@ class RadioSkill(CommonPlaySkill):
 
 
     def _play_station(self, station: BaseStation):
-        """Play the given station using the most appropriate service.
-        
+        """Play the given station using the most appropriate service.  
         Args: 
             station (Station): Instance of a Station to be played
         """
@@ -260,8 +259,8 @@ class RadioSkill(CommonPlaySkill):
             # Add picture to gui
             self.gui.clear()
             self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
-            self.log.info(f'Station image file: {station.image_file}')
-            self.log.info(f'Station radio text: {station.radio_text}')
+            self.log.info(f'Station Artist Title: {station.artist_title}')
+            self.log.info(f'Station Radio Text: {station.radio_text}')
             
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
