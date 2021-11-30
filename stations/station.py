@@ -175,7 +175,7 @@ stations = dict(
                     'http://streams.bigfm.de/bigfm-bw-128-mp3', 
                     'Jason Derulo - Love You', 
                     'None', 
-                    'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png),
+                    'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png)',
 
     DD=FileStation('DASDING', 'DASDING', 
                     'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 
