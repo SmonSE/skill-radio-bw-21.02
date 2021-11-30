@@ -48,11 +48,11 @@ class BaseStation(ABC):
 
     @property
     #def image_path(self) -> Path:
-        """The absolute path to the stations logo.
-
-        Note that this currently traverses the path from this file and may
-        break if this is moved in the file hierarchy.
-        """
+        #"""The absolute path to the stations logo.
+        #
+        #Note that this currently traverses the path from this file and may
+        #break if this is moved in the file hierarchy.
+        #"""
         #if self.image_file is None:
         #    return None
         #skill_path = Path(__file__).parent.parent.absolute()
