@@ -30,7 +30,7 @@ from .tsf import get_tsf_url
 class BaseStation(ABC):
     """Abstract Base Class for all Radio Stations."""
 
-    def __init__(self, acronym: str, full_name: str, image_file: str = None, radio_text: str = None):
+    def __init__(self, acronym: str, full_name: str, image_file: str = None, radio_text: str):
         self.acronym = acronym
         self.full_name = full_name
         self.image_file = image_file
@@ -41,7 +41,7 @@ class BaseStation(ABC):
             'acronym': self.acronym,
             'full_name': self.full_name,
             'image_path': str(self.image_path),
-            'radio_text': str(self.radio_text),
+            'radio_text': self.radio_text,
         }
 
     @property
@@ -70,7 +70,7 @@ class BaseStation(ABC):
 class FileStation(BaseStation):
     """Radio Station that provides a static url for their latest briefing."""
 
-    def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, radio_text: str = None):
+    def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, radio_text: str):
         super().__init__(acronym, full_name, image_file, radio_text)
         self._media_url = media_url
 
@@ -83,7 +83,7 @@ class FileStation(BaseStation):
 class FetcherStation(BaseStation):
     """Radio Station that requires a custom url getter function."""
 
-    def __init__(self, acronym: str, full_name: str, url_getter: Callable, image_file: str = None, radio_text: str = None):
+    def __init__(self, acronym: str, full_name: str, url_getter: Callable, image_file: str = None, radio_text: str):
         super().__init__(acronym, full_name, image_file, radio_text)
         self._get_media_url = url_getter
 
@@ -98,7 +98,7 @@ class FetcherStation(BaseStation):
 class RSSStation(BaseStation):
     """Radio Station based on an RSS feed."""
 
-    def __init__(self, acronym: str, full_name: str, rss_url: str, image_file: str = None, radio_text: str = None):
+    def __init__(self, acronym: str, full_name: str, rss_url: str, image_file: str = None, radio_text: str):
         super().__init__(acronym, full_name, image_file, radio_text)
         self._rss_url = rss_url
 
@@ -203,12 +203,11 @@ stations = dict(
                     'http://stream.rockland.de/rockland.mp3', 'RLR.png', 'None'), 
     SWRA=FileStation('SWR Aktuell', 'SWR Aktuell',
                     'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', 'SWRA.png', 'None'), 
-    WDR3=FileStation('WDR3', 'WDR3',
-                    'http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3', 'SWRA.png', 'http://www.wdr.de/radio/radiotext/streamtitle_wdr3.txt'), 
+    
+    #WDR3=FileStation('WDR3', 'WDR3', 'http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3', 'SWRA.png', 'http://www.wdr.de/radio/radiotext/streamtitle_wdr3.txt'), 
 
 
-                    
-
+                
 )
 # Country Default -> should be change to Region default
 country_defaults = dict(
@@ -216,7 +215,7 @@ country_defaults = dict(
     AU='ABC',
     BE='VRT',
     CA='CBC',
-    DE='WDR3',
+    DE='SWR3',
     ES='RNE',
     FI='YLE',
     PT='TSF',

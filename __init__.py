@@ -234,9 +234,6 @@ class RadioSkill(CommonPlaySkill):
             self.gui.show_image(station.image_file)
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station radio text: {station.radio_text}')
-
-
-            http://www.wdr.de/radio/radiotext/streamtitle_wdr3.txt
             
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
