@@ -183,7 +183,7 @@ class RadioSkill(CommonPlaySkill):
         if station_code != 'not_set':
             station = stations[station_code]
         elif len(custom_url) > 0:
-            station = stations.get('SWR3')  # 'custom'
+            station = stations.get('custom') 
         if station is None:
             station = self.get_default_station_by_country()
         if station is None:
@@ -228,6 +228,12 @@ class RadioSkill(CommonPlaySkill):
             media_url = station.media_uri
             self.log.info(f'Radio media url: {media_url}')
             mime = find_mime_type(media_url)
+            
+            # Add picture to gui
+            self.gui.clear()
+            self.gui.show_image(station.image_file)
+            self.log.info(f'Station image file: {station.image_file}')
+            
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
             # If backend cannot handle https, download the file and provide a local stream.

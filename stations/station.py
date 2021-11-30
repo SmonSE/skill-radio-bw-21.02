@@ -202,29 +202,18 @@ stations = dict(
     SWRA=FileStation('SWR Aktuell', 'SWR Aktuell',
                     'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', 'SWRA.png'), 
 
-    ##Bavaria (BY) 
-       
-
-
-
 )
 # Country Default -> should be change to Region default
 country_defaults = dict(
+    AT='OE3',
+    AU='ABC',
+    BE='VRT',
+    CA='CBC',
     DE='SWR3',
-    BW='SWR3',
-    BY='SWR3',
-    BE='SWR3',
-    BB='SWR3',
-    HB='SWR3',
-    HH='SWR3',
-    HE='SWR3',
-    MV='SWR3',
-    NI='SWR3',
-    NW='SWR3',
-    RP='SWR3',
-    SL='SWR3',
-    SN='SWR3',
-    ST='SWR3',
-    SH='SWR3',
-    TH='SWR3',
+    ES='RNE',
+    FI='YLE',
+    PT='TSF',
+    SE='Ekot',
+    UK='BBC',
+    US='NPR',
 )
