@@ -47,21 +47,21 @@ class BaseStation(ABC):
         }
 
     @property
-    def image_path(self) -> Path:
+    #def image_path(self) -> Path:
         """The absolute path to the stations logo.
 
         Note that this currently traverses the path from this file and may
         break if this is moved in the file hierarchy.
         """
-        if self.image_file is None:
-            return None
-        skill_path = Path(__file__).parent.parent.absolute()
-        file_path = Path(skill_path, 'images', self.image_file)
-        if not file_path.exists():
-            LOG.warning(
-                f'{self.image_file} could not be found, using default image')
-            file_path = Path(skill_path, 'images', 'generic.png')
-        return file_path
+        #if self.image_file is None:
+        #    return None
+        #skill_path = Path(__file__).parent.parent.absolute()
+        #file_path = Path(skill_path, 'images', self.image_file)
+        #if not file_path.exists():
+        #    LOG.warning(
+        #        f'{self.image_file} could not be found, using default image')
+        #    file_path = Path(skill_path, 'images', 'generic.png')
+        #return file_path
 
     @abstractproperty
     def media_uri(self) -> str:
