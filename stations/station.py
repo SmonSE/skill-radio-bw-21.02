@@ -41,7 +41,7 @@ class BaseStation(ABC):
         return {
             'acronym': self.acronym,
             'full_name': self.full_name,
-            'artist_title': self.artist_title,
+            'artist_title': str(self.artist_title),
             'radio_text': str(self.radio_text),
             'station_logo_url': str(self.station_logo_url),
         }
@@ -166,7 +166,7 @@ stations = dict(
     ##RadioStation ## https://radiome.de/baden-wurttemberg  // http://fmstream.org/index.php?i=1352
     ##DEUTSCHLAND (DE)
     #BFM=FileStation(acronym: str, full_name: str, 
-    #                url_stream_mp3,
+    #                media_url,
     #                artist_title: str, 
     #                radio_text: str, 
     #                station_logo_url: str):
@@ -296,9 +296,7 @@ stations = dict(
                     'None', 
                     'http://www.wdr.de/radio/radiotext/streamtitle_wdr3.txt', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/WDR_3_logo_2012.svg/320px-WDR_3_logo_2012.svg.png'), 
-
-
-                
+             
 )
 # Country Default -> should be change to Region default
 country_defaults = dict(
