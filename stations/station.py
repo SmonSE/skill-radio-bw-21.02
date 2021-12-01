@@ -203,7 +203,6 @@ stations = dict(
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Antenne_1_Logo.svg/272px-Antenne_1_Logo.svg.png'),
 
     RD7=FileStation('radio7', 'Radio 7',
-                    'http://radio7server.streamr.ru:8040/radio7256.mp3', 'RD7.png', 'None'),
                     'http://radio7server.streamr.ru:8040/radio7256.mp3', 'RD7.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Radio_7_logo.svg/320px-Radio_7_logo.svg.png'),
 
