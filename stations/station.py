@@ -30,9 +30,10 @@ from .tsf import get_tsf_url
 class BaseStation(ABC):
     """Abstract Base Class for all Radio Stations."""
 
-    def __init__(self, acronym: str, full_name: str, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
+    def __init__(self, acronym: str, full_name: str, image_file: str = None, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
         self.acronym = acronym
         self.full_name = full_name
+        self.image_file = image_file
         self.artist_title = artist_title
         self.radio_text = radio_text
         self.station_logo_url = station_logo_url
@@ -73,8 +74,8 @@ class BaseStation(ABC):
 class FileStation(BaseStation):
     """Radio Station that provides a static url for their latest briefing."""
 
-    def __init__(self, acronym: str, full_name: str, media_url: str, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
-        super().__init__(acronym, full_name, artist_title, radio_text, station_logo_url)
+    def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
+        super().__init__(acronym, full_name, image_file, artist_title, radio_text, station_logo_url)
         self._media_url = media_url
 
     @property
@@ -86,8 +87,8 @@ class FileStation(BaseStation):
 class FetcherStation(BaseStation):
     """Radio Station that requires a custom url getter function."""
 
-    def __init__(self, acronym: str, full_name: str, url_getter: Callable, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
-        super().__init__(acronym, full_name, artist_title, radio_text, station_logo_url)
+    def __init__(self, acronym: str, full_name: str, url_getter: Callable, image_file: str = None, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
+        super().__init__(acronym, full_name, image_file, artist_title, radio_text, station_logo_url)
         self._get_media_url = url_getter
 
     @property
@@ -101,8 +102,8 @@ class FetcherStation(BaseStation):
 class RSSStation(BaseStation):
     """Radio Station based on an RSS feed."""
 
-    def __init__(self, acronym: str, full_name: str, rss_url: str, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
-        super().__init__(acronym, full_name, artist_title, radio_text, station_logo_url)
+    def __init__(self, acronym: str, full_name: str, rss_url: str, image_file: str = None, artist_title: str = None, radio_text: str = None, station_logo_url: str = None):
+        super().__init__(acronym, full_name, image_file, artist_title, radio_text, station_logo_url)
         self._rss_url = rss_url
 
     @property
@@ -291,11 +292,11 @@ stations = dict(
                     'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/4/47/SWR_Aktuell_Logo.jpg'), 
 
-    WDR3=FileStation('WDR3', 'WDR3', 
-                    'http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3', 
-                    'None', 
-                    'http://www.wdr.de/radio/radiotext/streamtitle_wdr3.txt', 
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/WDR_3_logo_2012.svg/320px-WDR_3_logo_2012.svg.png'), 
+    #WDR3=FileStation('WDR3', 'WDR3', 
+    #                'http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3', 
+    #                'None', 
+    #                'http://www.wdr.de/radio/radiotext/streamtitle_wdr3.txt', 
+    #                'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/WDR_3_logo_2012.svg/320px-WDR_3_logo_2012.svg.png'), 
              
 )
 # Country Default -> should be change to Region default
