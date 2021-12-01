@@ -260,7 +260,7 @@ class RadioSkill(CommonPlaySkill):
             # Add picture to gui
             self.gui.clear()
             self.gui.show_image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Swr3-logo.svg/320px-Swr3-logo.svg.png", caption=None, title="SWR3 hier könnte auch der RadioText rein", fill=None, override_idle=None, override_animations=False)
-            self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
+            #self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station radio text: {station.radio_text}')
             
