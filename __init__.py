@@ -17,7 +17,6 @@ import subprocess
 import time
 
 from urllib.parse import quote
-
 from mycroft import intent_handler, AdaptIntent
 from mycroft.audio import wait_while_speaking
 from mycroft.skills.common_play_skill import CommonPlaySkill, CPSMatchLevel
@@ -26,7 +25,6 @@ from mycroft.util import get_cache_directory
 from .stations.match import match_station_from_utterance, Match
 from .stations.station import create_custom_station, BaseStation, country_defaults, stations
 from .stations.util import contains_html, find_mime_type
-
 
 # Minimum confidence levels
 CONF_EXACT_MATCH = 0.9
@@ -52,10 +50,8 @@ class RadioSkill(CommonPlaySkill):
 
     def load_alternate_station_names(self) -> dict:
         """Load the list of alternate station names from alt.feed.name.value
-
         These are provided as name, acronym pairs. They are reordered into a
         dict keyed by acronym for ease of use in station matching.
-
         Returns:
             Dict of alternative names for stations
                 Keys: station acronym
@@ -114,13 +110,12 @@ class RadioSkill(CommonPlaySkill):
             # Just use the default Radio feed
             selected_station = self.get_default_station()
         self.handle_play_request(selected_station)
-        
+
     def CPS_match_query_phrase(self, phrase: str) -> tuple((str, float, dict)):
         """Respond to Common Play Service query requests.
-        
+
         Args:
             phrase: utterance request to parse
-
         Returns:
             Tuple(Name of station, confidence, Station information)
         """
@@ -128,7 +123,7 @@ class RadioSkill(CommonPlaySkill):
             # The utterance does not contain radio vocab. Do not match.
             return None
         match = match_station_from_utterance(self, phrase)
-        
+
         # If no match but utterance contains radio, return low confidence level
         if match.confidence < CONF_GENERIC_MATCH:
             match = Match(self.get_default_station(), CONF_GENERIC_MATCH)
@@ -142,18 +137,16 @@ class RadioSkill(CommonPlaySkill):
             match_level = CPSMatchLevel.CATEGORY
         else:
             return None
-            
+
         return (match.station.full_name, match_level, match.station.as_dict())
 
     def download_media_file(self, url: str) -> str:
         """Download a media file and return path to the stream.
-        
+
         Args:
             url (str): media file to download
-
         Returns:
             stream (str): file path of the audio stream
-
         Raises:
             ValueError if url does not provide a valid audio file
         """
@@ -170,9 +163,8 @@ class RadioSkill(CommonPlaySkill):
             raise ValueError('Could not fetch valid audio file.')
         return stream
 
-    def get_default_station(self) -> BaseStation:
+        def get_default_station(self) -> BaseStation:
         """Get default station for user.
-
         Fallback order:
         1. Station defined in Skill Settings
         2. Default station for country
@@ -184,7 +176,7 @@ class RadioSkill(CommonPlaySkill):
         if station_code != 'not_set':
             station = stations[station_code]
         elif len(custom_url) > 0:
-            station = stations.get('custom') 
+            station = stations.get('custom')
         if station is None:
             station = self.get_default_station_by_country()
         if station is None:
@@ -197,9 +189,9 @@ class RadioSkill(CommonPlaySkill):
         station_code = country_defaults.get(country_code)
         return stations.get(station_code)
 
-    def handle_play_request(self, station: BaseStation = None):
-        """Handle request to play a station.
 
+def handle_play_request(self, station: BaseStation = None):
+        """Handle request to play a station.
         Args:
             station: Instance of a Station to be played
         """
@@ -209,7 +201,6 @@ class RadioSkill(CommonPlaySkill):
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
-
     @property
     def is_https_supported(self) -> bool:
         """Check if any available audioservice backend supports https."""
@@ -218,8 +209,7 @@ class RadioSkill(CommonPlaySkill):
                 return True
         return False
 
-
-    def show_image(self, url, caption=None,
+        def show_image(self, url, caption=None,
                    title=None, fill=None,
                    override_idle=None, override_animations=False):
         """Display a GUI page for viewing an image.
@@ -244,8 +234,7 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
-
-    def _play_station(self, station: BaseStation):
+def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.
         
         Args: 
@@ -257,10 +246,10 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Radio media url: {media_url}')
             mime = find_mime_type(media_url)
 
+
             # Add picture to gui
             self.gui.clear()
-            self.gui.show_image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Swr3-logo.svg/320px-Swr3-logo.svg.png", caption=None, title="SWR3 hier könnte auch der RadioText rein", fill=None, override_idle=None, override_animations=False)
-            #self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
+            self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station radio text: {station.radio_text}')
             
@@ -282,5 +271,36 @@ class RadioSkill(CommonPlaySkill):
             self.speak_dialog("could.not.start.the.radio.feed")
             self.log.exception(e)
 
-    def stop_curl_process(self):
+def stop_curl_process(self):
         """Stop any running curl download process."""
+        if self.curl:
+            try:
+                self.curl.terminate()
+                self.curl.communicate()
+                # Check if process has completed
+                return_code = self.curl.poll()
+                if return_code is None:
+                    # Process must still be running...
+                    self.curl.kill()
+                else:
+                    self.log.debug(f'Curl return code: {return_code}')
+            except subprocess.SubprocessError as e:
+                self.log.exception(f'Could not stop curl: {repr(e)}')
+            finally:
+                self.curl = None
+    def stop(self) -> bool:
+        """Respond to system stop commands."""
+        if self.now_playing is None:
+            return False
+        self.now_playing = None
+        # Disable restarting when stopped
+        if self.last_station_played:
+            self.disable_intent('restart_playback')
+            self.last_station_played = None
+        # Stop download process if it's running.
+        self.stop_curl_process()
+        self.CPS_send_status()
+        return True
+def create_skill():
+    return RadioSkill()
+
