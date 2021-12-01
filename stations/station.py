@@ -171,7 +171,7 @@ stations = dict(
                     'http://streams.bigfm.de/bigfm-bw-128-mp3', 
                     'None',
                     'None', 
-                    'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png),
+                    'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png)',
 
     DD=FileStation('DASDING', 'DASDING', 
                     'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 
@@ -199,7 +199,7 @@ stations = dict(
 
     DNW=FileStation('DNW', 'Die neue Welle',
                     'http://dieneuewelle.cast.addradio.de/dieneuewelle/simulcast/high/stream.mp3', 
-                    'None, 
+                    'None', 
                     'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Die_neue_welle_2008.svg/263px-Die_neue_welle_2008.svg.png'),
 
