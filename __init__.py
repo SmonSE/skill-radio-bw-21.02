@@ -1,3 +1,4 @@
+@ -1,284 +1,285 @@
 # Copyright 2018 Mycroft AI Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -246,7 +247,8 @@ class RadioSkill(CommonPlaySkill):
 
 
     def _play_station(self, station: BaseStation):
-        """Play the given station using the most appropriate service.  
+        """Play the given station using the most appropriate service.
+        
         Args: 
             station (Station): Instance of a Station to be played
         """
@@ -258,9 +260,10 @@ class RadioSkill(CommonPlaySkill):
 
             # Add picture to gui
             self.gui.clear()
+            self.gui.show_image("https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Swr3-logo.svg/320px-Swr3-logo.svg.png", caption=None, title="SWR3 hier könnte auch der RadioText rein", fill=None, override_idle=None, override_animations=False)
             self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
-            self.log.info(f'Station Artist Title: {station.artist_title}')
-            self.log.info(f'Station Radio Text: {station.radio_text}')
+            self.log.info(f'Station image file: {station.image_file}')
+            self.log.info(f'Station radio text: {station.radio_text}')
             
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
@@ -282,37 +285,3 @@ class RadioSkill(CommonPlaySkill):
 
     def stop_curl_process(self):
         """Stop any running curl download process."""
-        if self.curl:
-            try:
-                self.curl.terminate()
-                self.curl.communicate()
-                # Check if process has completed
-                return_code = self.curl.poll()
-                if return_code is None:
-                    # Process must still be running...
-                    self.curl.kill()
-                else:
-                    self.log.debug(f'Curl return code: {return_code}')
-            except subprocess.SubprocessError as e:
-                self.log.exception(f'Could not stop curl: {repr(e)}')
-            finally:
-                self.curl = None
-
-    def stop(self) -> bool:
-        """Respond to system stop commands."""
-        if self.now_playing is None:
-            return False
-        self.now_playing = None
-        # Disable restarting when stopped
-        if self.last_station_played:
-            self.disable_intent('restart_playback')
-            self.last_station_played = None
-
-        # Stop download process if it's running.
-        self.stop_curl_process()
-        self.CPS_send_status()
-        return True
-
-
-def create_skill():
-    return RadioSkill()
