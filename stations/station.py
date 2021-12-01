@@ -1,4 +1,3 @@
-@@ -1,226 +1,269 @@
 # Copyright 2021 Mycroft AI Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
