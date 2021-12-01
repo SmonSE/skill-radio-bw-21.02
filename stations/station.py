@@ -29,8 +29,6 @@ from .tsf import get_tsf_url
 
 class BaseStation(ABC):
     """Abstract Base Class for all Radio Stations."""
-
-    def __init__(self, acronym: str, full_name: str, image_file: str = None, radio_text: str = None):
     def __init__(self, acronym: str, full_name: str, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
         self.acronym = acronym
         self.full_name = full_name
@@ -72,9 +70,6 @@ class BaseStation(ABC):
 
 class FileStation(BaseStation):
     """Radio Station that provides a static url for their latest briefing."""
-
-    def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, radio_text: str = None):
-        super().__init__(acronym, full_name, image_file, radio_text)
     def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
         super().__init__(acronym, full_name, image_file, radio_text, station_logo_url)
         self._media_url = media_url
@@ -87,9 +82,6 @@ class FileStation(BaseStation):
 
 class FetcherStation(BaseStation):
     """Radio Station that requires a custom url getter function."""
-
-    def __init__(self, acronym: str, full_name: str, url_getter: Callable, image_file: str = None, radio_text: str = None):
-        super().__init__(acronym, full_name, image_file, radio_text)
     def __init__(self, acronym: str, full_name: str, url_getter: Callable, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
         super().__init__(acronym, full_name, image_file, radio_text, station_logo_url)
         self._get_media_url = url_getter
@@ -104,9 +96,6 @@ class FetcherStation(BaseStation):
 
 class RSSStation(BaseStation):
     """Radio Station based on an RSS feed."""
-
-    def __init__(self, acronym: str, full_name: str, rss_url: str, image_file: str = None, radio_text: str = None):
-        super().__init__(acronym, full_name, image_file, radio_text)
     def __init__(self, acronym: str, full_name: str, rss_url: str, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
         super().__init__(acronym, full_name, image_file, radio_text, station_logo_url)
         self._rss_url = rss_url
@@ -173,53 +162,43 @@ stations = dict(
     ##RadioStation ## https://radiome.de/baden-wurttemberg  // http://fmstream.org/index.php?i=1352
     ##Baden-Württemberg (BW)
     BFM=FileStation('bigFM', 'bigFM', 
-                    'http://streams.bigfm.de/bigfm-bw-128-mp3', 'BFM.png', 'None'),
                     'http://streams.bigfm.de/bigfm-bw-128-mp3', 'BFM.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/KFBG_100.7_Big_FM_logo.svg/320px-KFBG_100.7_Big_FM_logo.svg.png'),
 
     DD=FileStation('DASDING', 'DASDING', 
-                    'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 'DD.png', 'Radiotext muss ich noch hier rein bekommen'),
                     'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 'DD.png', 'Radiotext muss ich noch hier rein bekommen', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Dasding_2011.png/320px-Dasding_2011.png'),
 
     RGB=FileStation('REGNBGN', 'REGENBOGEN',
-                    'https://streams.regenbogen.de/rr-mannheim-128-mp3', 'RGB.png', 'None'),
                     'https://streams.regenbogen.de/rr-mannheim-128-mp3', 'RGB.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Radio_Regenbogen.svg/262px-Radio_Regenbogen.svg.png'),
 
     SWR3=FileStation('SWR3', 'SWR3 Radio',
-                    'https://liveradio.swr.de/sw282p3/swr3/play.mp3', 'SWR3.png', 'None'),
                     'https://liveradio.swr.de/sw282p3/swr3/play.mp3', 
                     'SWR3.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Swr3-logo.svg/320px-Swr3-logo.svg.png'),
 
     SWR1R=FileStation('SWR1', 'SWR1 BW Radio',
-                    'https://liveradio.swr.de/sw282p3/swr1bw/play.mp3', 'SWR1R.png', 'None'),
                     'https://liveradio.swr.de/sw282p3/swr1bw/play.mp3', 'SWR1R.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/SWR1_BW_rechts_Logo.svg/320px-SWR1_BW_rechts_Logo.svg.png'),
 
     DNW=FileStation('DNW', 'Die neue Welle',
-                    'http://dieneuewelle.cast.addradio.de/dieneuewelle/simulcast/high/stream.mp3', 'DNW.png', 'None'),
                     'http://dieneuewelle.cast.addradio.de/dieneuewelle/simulcast/high/stream.mp3', 'DNW.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Die_neue_welle_2008.svg/263px-Die_neue_welle_2008.svg.png'),
 
     SHL=FileStation('sunshine', 'sunshile live',
-                    'http://stream.sunshine-live.de/hq/mp3-128', 'SHL.png', 'None'),
                     'http://stream.sunshine-live.de/hq/mp3-128', 'SHL.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sunshine_live_logo.svg/320px-Sunshine_live_logo.svg.png'),
 
     SWR4S=FileStation('SWR4 S', 'SWR4 Stuttgart',
-                    'http://swr-swr4-bw.cast.addradio.de/swr/swr4/bw/mp3/128/stream.mp3', 'SWR4F.png', 'None'),
                     'http://swr-swr4-bw.cast.addradio.de/swr/swr4/bw/mp3/128/stream.mp3', 'SWR4F.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/SWR4_Baden-Württemberg_Logo.svg/320px-SWR4_Baden-Württemberg_Logo.svg.png'),
 
     SWR4K=FileStation('SWR4 KA', 'SWR4 Karlsruhe',
-                    'http://swr-swr4-ka.cast.addradio.de/swr/swr4/ka/mp3/128/stream.mp3', 'SWR4F.png', 'None'),
                     'http://swr-swr4-ka.cast.addradio.de/swr/swr4/ka/mp3/128/stream.mp3', 'SWR4F.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Swr4-logo.svg/320px-Swr4-logo.svg.png'),
 
     ANT=FileStation('antenne1', 'antenne 1',
-                    'http://stream.antenne1.de/a1stg/livestream2.mp3', 'ANT.png', 'None'),
                     'http://stream.antenne1.de/a1stg/livestream2.mp3', 'ANT.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Antenne_1_Logo.svg/272px-Antenne_1_Logo.svg.png'),
 
@@ -229,47 +208,38 @@ stations = dict(
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Radio_7_logo.svg/320px-Radio_7_logo.svg.png'),
 
     SWR2=FileStation('swr2', 'SWR 2',
-                    'https://liveradio.swr.de/sw331ch/swr2', 'SWR2.png', 'None'),
                     'https://liveradio.swr.de/sw331ch/swr2', 'SWR2.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/5/53/SWR2_Logo_bis_2014.png'),
 
     ENY=FileStation('energy', 'Energy Stuttgart',
-                    'http://media.mediatime.ru:8051/Energy', 'ENY.png', 'None'),
                     'http://media.mediatime.ru:8051/Energy', 'ENY.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Energy_Bern_Logo.png/301px-Energy_Bern_Logo.png'),
 
     BAD=FileStation('baden.fm', 'Baden FM',
-                    'http://badenfm.ip-streaming.net:8006/badenfm', 'BAD.png', 'None'),
                     'http://badenfm.ip-streaming.net:8006/badenfm', 'BAD.png', 'None', 
                     'None'),
 
-    EPR=FileStation('europa-park', 'Europa-Park Radio',
-                    'https://rs9.stream24.net/europa-park-radio.mp3', 'EPR.png', 'None'),                   
+    EPR=FileStation('europa-park', 'Europa-Park Radio',                  
                     'https://rs9.stream24.net/europa-park-radio.mp3', 'EPR.png', 'None', 
                     'None'),   
 
-    SEE=FileStation('seefunk', 'Radio Seefunk',
-                    'http://webradio.radio-seefunk.de:8000/live64', 'SEE.png', 'None'),  
+    SEE=FileStation('seefunk', 'Radio Seefunk', 
                     'http://webradio.radio-seefunk.de:8000/live64', 'SEE.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/RADIO_SEEFUNK.svg/240px-RADIO_SEEFUNK.svg.png'),  
 
     BHH=FileStation('bigFM Hip Hop', 'big FM Hip Hop',
-                    'http://streams.bigfm.de/bigfm-dhiphopcharts-128-mp3', 'BFM.png', 'None'),  
                     'http://streams.bigfm.de/bigfm-dhiphopcharts-128-mp3', 'BFM.png', 'None', 
                     'None'),  
 
     BHC=FileStation('bigFM Charts', 'big FM Charts',
-                    'http://ilr.bigfm.de/bigfm-charts-128-mp3', 'BFM.png', 'None'), 
                     'http://ilr.bigfm.de/bigfm-charts-128-mp3', 'BFM.png', 'None', 
                     'None'), 
 
     RLR=FileStation('Rockland', 'Rockland Radio',
-                    'http://stream.rockland.de/rockland.mp3', 'RLR.png', 'None'), 
                     'http://stream.rockland.de/rockland.mp3', 'RLR.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Rockland_Radio_Logo.jpg/320px-Rockland_Radio_Logo.jpg'), 
 
     SWRA=FileStation('SWR Aktuell', 'SWR Aktuell',
-                    'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', 'SWRA.png', 'None'), 
                     'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', 'SWRA.png', 'None', 
                     'https://upload.wikimedia.org/wikipedia/commons/4/47/SWR_Aktuell_Logo.jpg'), 
 
