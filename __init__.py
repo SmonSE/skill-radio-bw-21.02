@@ -249,7 +249,7 @@ class RadioSkill(CommonPlaySkill):
             self.gui.clear()
             self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
             self.log.info(f'Station full name: {station.full_name}')
-            self.log.info(f'Station media url: {station.media_url}')
+            #self.log.info(f'Station media url: {station.media_url}') error occured
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station radio text: {station.radio_text}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
