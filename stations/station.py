@@ -161,14 +161,22 @@ stations = dict(
 
     ##RadioStation ## https://radiome.de/baden-wurttemberg  // http://fmstream.org/index.php?i=1352
     ##DEUTSCHLAND (DE)
-    #BFM=FileStation( acronym: str, 
-    #                 full_name: str, 
-    #                 media_url: str,
-    #                 image_file: str, 
-    #                 radio_text: str, 
-    #                 station_logo_url: str):
 
-    BFM=FileStation('bigFM', 'bigFM', 'http://streams.bigfm.de/bigfm-bw-128-mp3', 'None', 'None', 'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png'),
+    #BFM=FileStation( 
+    #   acronym: str, 
+    #   full_name: str, 
+    #   media_url: str,
+    #   image_file: str, 
+    #   radio_text: str, 
+    #   station_logo_url: str):
+
+    BFM=FileStation(
+        'bigFM', 
+        'bigFM', 
+        'http://streams.bigfm.de/bigfm-bw-128-mp3', 
+        'None', 
+        'None', 
+        'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png'),
 
     DD=FileStation('DASDING', 'DASDING', 'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 'None','None', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Dasding_2011.png/320px-Dasding_2011.png'),
 

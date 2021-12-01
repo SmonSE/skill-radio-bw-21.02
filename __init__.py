@@ -245,11 +245,10 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Radio media url: {media_url}')
             mime = find_mime_type(media_url)
 
-
             # Add picture to gui
             self.gui.clear()
             self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
-            self.log.info(f'Station image file: {station.image_file}')
+            self.log.info(f'Station logo url: {station.station_logo_url}')
             self.log.info(f'Station radio text: {station.radio_text}')
             
             # Ensure announcement of station has finished before playing
