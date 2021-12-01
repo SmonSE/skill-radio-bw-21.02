@@ -168,7 +168,7 @@ stations = dict(
     #                 radio_text: str, 
     #                 station_logo_url: str):
 
-    BFM=FileStation('bigFM', 'bigFM', 'http://streams.bigfm.de/bigfm-bw-128-mp3', 'None', 'None', 'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png)',
+    BFM=FileStation('bigFM', 'bigFM', 'http://streams.bigfm.de/bigfm-bw-128-mp3', 'None', 'None', 'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png'),
 
     DD=FileStation('DASDING', 'DASDING', 'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 'None','None', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Dasding_2011.png/320px-Dasding_2011.png'),
 
@@ -208,7 +208,8 @@ stations = dict(
 
     SWRA=FileStation('SWR Aktuell', 'SWR Aktuell', 'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', 'None', 'None', 'https://upload.wikimedia.org/wikipedia/commons/4/47/SWR_Aktuell_Logo.jpg'), 
 
-    WDR3=FileStation('WDR3', 'WDR3', 'http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3', 'None', 'None', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/WDR_3_logo_2012.svg/320px-WDR_3_logo_2012.svg.png'), 
+    WDR3=FileStation('WDR3', 'WDR3', 'http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3','None', 'None', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/WDR_3_logo_2012.svg/320px-WDR_3_logo_2012.svg.png'), 
+
                 
 )
 # Country Default -> should be change to Region default
