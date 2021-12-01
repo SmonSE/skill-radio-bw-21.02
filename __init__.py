@@ -163,7 +163,7 @@ class RadioSkill(CommonPlaySkill):
             raise ValueError('Could not fetch valid audio file.')
         return stream
 
-        def get_default_station(self) -> BaseStation:
+    def get_default_station(self) -> BaseStation:
         """Get default station for user.
         Fallback order:
         1. Station defined in Skill Settings
@@ -190,7 +190,7 @@ class RadioSkill(CommonPlaySkill):
         return stations.get(station_code)
 
 
-def handle_play_request(self, station: BaseStation = None):
+    def handle_play_request(self, station: BaseStation = None):
         """Handle request to play a station.
         Args:
             station: Instance of a Station to be played
@@ -212,21 +212,20 @@ def handle_play_request(self, station: BaseStation = None):
         def show_image(self, url, caption=None,
                    title=None, fill=None,
                    override_idle=None, override_animations=False):
-        """Display a GUI page for viewing an image.
-        Args:
-            url (str): Pointer to the image
-            caption (str): A caption to show under the image
-            title (str): A title to display above the image content
-            fill (str): Fill type supports 'PreserveAspectFit',
-            'PreserveAspectCrop', 'Stretch'
-            override_idle (boolean, int):
-                True: Takes over the resting page indefinitely
-                (int): Delays resting page for the specified number of
-                       seconds.
+            """Display a GUI page for viewing an image.
+            Args:
+                url (str): Pointer to the image
+                caption (str): A caption to show under the image
+                title (str): A title to display above the image content
+                fill (str): Fill type supports 'PreserveAspectFit',
+                'PreserveAspectCrop', 'Stretch'
+                override_idle (boolean, int):
+                    True: Takes over the resting page indefinitely
+                    (int): Delays resting page for the specified number of seconds.
             override_animations (boolean):
                 True: Disables showing all platform skill animations.
                 False: 'Default' always show animations.
-        """
+            """
         self["image"] = url
         self["title"] = title
         self["caption"] = caption
@@ -234,7 +233,7 @@ def handle_play_request(self, station: BaseStation = None):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
-def _play_station(self, station: BaseStation):
+    def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.
         
         Args: 
@@ -271,7 +270,7 @@ def _play_station(self, station: BaseStation):
             self.speak_dialog("could.not.start.the.radio.feed")
             self.log.exception(e)
 
-def stop_curl_process(self):
+    def stop_curl_process(self):
         """Stop any running curl download process."""
         if self.curl:
             try:
@@ -301,6 +300,7 @@ def stop_curl_process(self):
         self.stop_curl_process()
         self.CPS_send_status()
         return True
+
 def create_skill():
     return RadioSkill()
 
