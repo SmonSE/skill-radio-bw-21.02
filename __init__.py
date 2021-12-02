@@ -15,7 +15,6 @@
 import os
 import subprocess
 import time
-import BeautifulSoup
 
 from urllib.parse import quote
 from mycroft import intent_handler, AdaptIntent
