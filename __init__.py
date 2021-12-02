@@ -251,7 +251,7 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station radio text: {station.radio_text}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
 
-            self.log.info(f'Get Radio URL Radio Text: {get_radio_url}')
+            get_radio_url
 
 
             # Add picture to gui

@@ -19,11 +19,14 @@ from bs4 import BeautifulSoup
 def get_radio_url():
     """Custom news scraper for Radio Text from radio.de."""
     
-    domain = "https://www.radio.de/s"
-    latest_briefings_url = f"{domain}/dasding"
+    domain = "http://www.wdr.de/radio"
+    latest_briefings_url = f"{domain}/radiotext/"
     soup = BeautifulSoup(urlopen(latest_briefings_url), features='html.parser')
     # The collection-grid3 element contains a list of the latest episodes
-    result = soup.find("div", {"class": "player__song"}).get_text(strip=True)
+    result = soup.find(id="text_wdr3").get_text(strip=True)
+    self.log.info(f'RESULT: URL Radio Text: {result}')
+    result2 = soup.find("div", {"text_wdr3"}).get_text(strip=True)
+    self.log.info(f'RESULT: URL Radio Text: {result2}')
     # Get the href value of the first link tag from within this list
     #episode_page_link = result.find_all('a')[0]['href']
     #episode_page = urlopen(domain + episode_page_link)
