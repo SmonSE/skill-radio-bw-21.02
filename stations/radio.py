@@ -28,7 +28,7 @@ def get_radio_url():
 
     div = soup.find("div", {"id": "text_wdr3"})
     content = str(div)
-    self.log.info(content)
+    self.log.info(content[:50])
     
     # Get the href value of the first link tag from within this list
     #episode_page_link = result.find_all('a')[0]['href']
