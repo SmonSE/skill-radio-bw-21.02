@@ -234,8 +234,7 @@ class RadioSkill(CommonPlaySkill):
                        override_animations)
 
     def _play_station(self, station: BaseStation):
-        """Play the given station using the most appropriate service.
-        
+        """Play the given station using the most appropriate service.    
         Args: 
             station (Station): Instance of a Station to be played
         """
@@ -245,15 +244,15 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Radio media url: {media_url}')
             mime = find_mime_type(media_url)
 
-            # Add picture to gui
-            self.gui.clear()
-            self.gui.show_image(station.station_logo_url, caption=None, title=station.full_name, fill=None, override_idle=None, override_animations=False)
-            self.log.info(f'Station full name: {station.full_name}')
-            #self.log.info(f'Station media url: {station.media_url}') error occured
+            self.log.info(f'Station acronym: {station.acronym}')
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station radio text: {station.radio_text}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
-            
+
+            # Add picture to gui
+            self.gui.clear()
+            self.gui.show_image(station.station_logo_url, caption=station.full_name, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
             # If backend cannot handle https, download the file and provide a local stream.
