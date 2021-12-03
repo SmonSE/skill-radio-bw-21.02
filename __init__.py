@@ -253,8 +253,9 @@ class RadioSkill(CommonPlaySkill):
 
             get_streamContent_url()
             artistTitle = get_streamContent_url
+            artistDecoded = artistTitle.decode()
 
-            self.log.info(f'Artist from stream: {artistTitle}')
+            self.log.info(f'Artist from stream: {artistDecoded}')
 
             # Add picture to gui
             self.gui.clear()
