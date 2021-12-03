@@ -39,6 +39,6 @@ def get_streamContent_url():
             LOG.info("no title found.")
         
     #mp3Artist = title.decode(encoding, errors='replace')
-    LOG.info(f'Title: {title}') 
+    LOG.info(f'#META#: {title}') 
 
-    return title
+    return lsubstr(title)
