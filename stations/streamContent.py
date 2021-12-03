@@ -32,7 +32,6 @@ def get_streamContent_url():
         if m:
          title = m.group(1)
          if title:
-            self.log.info(f'got title')
                break
         else: 
             sys.exit('no title found')
