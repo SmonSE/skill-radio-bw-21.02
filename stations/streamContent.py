@@ -13,18 +13,18 @@ except ImportError:  # Python 3
 def get_streamContent_url():
 
     url = 'https://liveradio.swr.de/sw282p3/dasding/play.mp3'  # radio stream
-    encoding = 'utf-8' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
+    encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
     request = urllib2.Request(url, headers={'Icy-MetaData': 1})  # request metadata
     response = urllib2.urlopen(request)
-    print(response.headers, file=sys.stderr)
+    LOG.info(response.headers, file=sys.stderr)
 
     metaint = int(response.headers['icy-metaint'])
     for _ in range(10): # # title may be empty initially, try several times
         response.read(metaint)  # skip to metadata
         metadata_length = struct.unpack('B', response.read(1))[0] * 16  # length byte
         metadata = response.read(metadata_length).rstrip(b'\0')
-        print(metadata, file=sys.stderr)
         LOG.info(f'MetaData length: {metadata_length}')
+        LOG.info(f'MetaData: {metadata, file=sys.stderr}')
 
         # extract title from the metadata
         m = re.search(br"StreamTitle='([^']*)';", metadata)
@@ -36,7 +36,7 @@ def get_streamContent_url():
             sys.exit('no title found')
             LOG.info("This is an info level log message.")
         
-    print(title.decode(encoding, errors='ignore'))
+    LOG.info(f'MetaData: {title.decode(encoding, errors='ignore')}')
     mp3Artist = title.decode(encoding, errors='ignore')
     LOG.info("### DREI ###")
 
