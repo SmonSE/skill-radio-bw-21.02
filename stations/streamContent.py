@@ -24,7 +24,7 @@ def get_streamContent_url():
         metadata_length = struct.unpack('B', response.read(1))[0] * 16  # length byte
         metadata = response.read(metadata_length).rstrip(b'\0')
         print(metadata, file=sys.stderr)
-        LOG.info("### EINS ###")
+        LOG.info(f'MetaData length: {metadata_length}')
 
         # extract title from the metadata
         m = re.search(br"StreamTitle='([^']*)';", metadata)
@@ -36,8 +36,8 @@ def get_streamContent_url():
             sys.exit('no title found')
             LOG.info("This is an info level log message.")
         
-        print(title.decode(encoding, errors='ignore'))
-        mp3Artist = title.decode(encoding, errors='ignore')
-        LOG.info("### DREI ###")
+    print(title.decode(encoding, errors='ignore'))
+    mp3Artist = title.decode(encoding, errors='ignore')
+    LOG.info("### DREI ###")
 
-        return mp3Artist
+    return mp3Artist
