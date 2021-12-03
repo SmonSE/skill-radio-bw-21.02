@@ -1,6 +1,7 @@
 # https://stackoverflow.com/questions/35102278/python-3-get-song-name-from-internet-radio-stream
 
 from __future__ import print_function
+from stations.util import LOG
 import re
 import struct
 import sys
@@ -23,7 +24,7 @@ def get_streamContent_url():
         metadata_length = struct.unpack('B', response.read(1))[0] * 16  # length byte
         metadata = response.read(metadata_length).rstrip(b'\0')
         print(metadata, file=sys.stderr)
-        self.log.info("This is an info level log message.")
+        #self.log.info("This is an info level log message.")
 
         # extract title from the metadata
         m = re.search(br"StreamTitle='([^']*)';", metadata)
@@ -33,7 +34,7 @@ def get_streamContent_url():
                break
         else: 
             sys.exit('no title found')
-            #self.log.info("This is an info level log message.")
+            LOG.info("This is an info level log message.")
         
         print(title.decode(encoding, errors='ignore'))
         mp3Artist = title.decode(encoding, errors='ignore')
