@@ -1,7 +1,7 @@
 # https://stackoverflow.com/questions/35102278/python-3-get-song-name-from-internet-radio-stream
 
 from __future__ import print_function
-from stations.util import LOG
+from mycroft.util import LOG
 import re
 import struct
 import sys
