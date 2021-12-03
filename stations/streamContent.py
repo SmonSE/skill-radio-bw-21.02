@@ -27,7 +27,7 @@ def get_streamContent_url():
 
         # extract title from the metadata
         #m = re.search(br"StreamTitle='([^']*)';", metadata)
-        m = re.search(br"match=b'([^']*)';", metadata)
+        m = re.search(br"='([^']*)';", metadata)
         LOG.info(f'MetaData m: {m}') 
 
         if m:
@@ -35,11 +35,10 @@ def get_streamContent_url():
          if title:
                break
         else: 
-            sys.exit('no title found')
-            LOG.info("This is an info level log message.")
+            #sys.exit('no title found')
+            LOG.info("no title found.")
         
-    #LOG.info(f'Title: {title.decode()}')
-    mp3Artist = title.decode(encoding, errors='replace')
-    LOG.info("### DREI ###")
+    #mp3Artist = title.decode(encoding, errors='replace')
+    LOG.info(f'Title: {title}') 
 
-    return mp3Artist
+    return title
