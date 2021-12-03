@@ -24,10 +24,10 @@ def get_streamContent_url():
         metadata_length = struct.unpack('B', response.read(1))[0] * 16  # length byte
         metadata = response.read(metadata_length).rstrip(b'\0')
         LOG.info(f'MetaData length: {metadata_length}')
-        #LOG.info(f'MetaData: {metadata}')
 
         # extract title from the metadata
-        m = re.search(br"StreamTitle='([^']*)';", metadata)
+        #m = re.search(br"StreamTitle='([^']*)';", metadata)
+        m = re.search(br"='([^']*)';", metadata)
         if m:
          title = m.group(1)
          if title:
