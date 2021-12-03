@@ -37,7 +37,7 @@ def get_streamContent_url():
             sys.exit('no title found')
         
         print(title.decode(encoding, errors='replace'))
-        self.log.info(f'get_streamContent_url::title.decode: {title.decode(encoding, errors='replace')}')
         mp3Artist = title.decode(encoding, errors='replace')
+        self.log.info(f'get_streamContent_url::title.decode: {mp3Artist)}')
 
         return mp3Artist
