@@ -16,6 +16,7 @@ def get_streamContent_url():
     encoding = 'default' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
     request = urllib2.Request(url, headers={'Icy-MetaData': 1})  # request metadata
     response = urllib2.urlopen(request)
+    self.log.info(f'get_streamContent_url::respponse.headers: {response.headers}')
     print(response.headers, file=sys.stderr)
 
     metaint = int(response.headers['icy-metaint'])
@@ -24,6 +25,7 @@ def get_streamContent_url():
         metadata_length = struct.unpack('B', response.read(1))[0] * 16  # length byte
         metadata = response.read(metadata_length).rstrip(b'\0')
         print(metadata, file=sys.stderr)
+        self.log.info(f'get_streamContent_url::metadata: {metadata}')
 
         # extract title from the metadata
         m = re.search(br"StreamTitle='([^']*)';", metadata)
@@ -35,6 +37,7 @@ def get_streamContent_url():
             sys.exit('no title found')
         
         print(title.decode(encoding, errors='replace'))
+        self.log.info(f'get_streamContent_url::title.decode: {title.decode(encoding, errors='replace')}')
         mp3Artist = title.decode(encoding, errors='replace')
 
         return mp3Artist
