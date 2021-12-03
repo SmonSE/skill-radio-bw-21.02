@@ -38,4 +38,4 @@ def get_streamContent_url():
         print(title.decode(encoding, errors='ignore'))
         mp3Artist = title.decode(encoding, errors='ignore')
 
-        return mp3Artist
+        return metadata
