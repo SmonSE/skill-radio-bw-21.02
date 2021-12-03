@@ -26,7 +26,7 @@ from .stations.match import match_station_from_utterance, Match
 from .stations.station import create_custom_station, BaseStation, country_defaults, stations
 from .stations.util import contains_html, find_mime_type
 
-from .stations.streamContent import get_streamContent_url
+from .stations.streamContent import find_metaData_url
 
 # Minimum confidence levels
 CONF_EXACT_MATCH = 0.9
