@@ -172,7 +172,7 @@ stations = dict(
     BFM=FileStation(
         'bigFM', 
         'bigFM', 
-        'http://streams.bigfm.de/bigfm-bw-128-mp3', 
+        'https://streams.bigfm.de/bigfm-deutschland-128-mp3', 
         'None', 
         'None', 
         'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png'),
