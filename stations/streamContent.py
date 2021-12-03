@@ -36,6 +36,6 @@ def get_streamContent_url():
             self.log.info(f'no title found')
         
         print(title.decode(encoding, errors='replace'))
-        mp3Artist = title.encode(encoding='iso-8859-1',errors='replace')
+        mp3Artist = title.decode(encoding='iso-8859-1',errors='replace')
 
         return mp3Artist
