@@ -26,6 +26,9 @@ from .stations.match import match_station_from_utterance, Match
 from .stations.station import create_custom_station, BaseStation, country_defaults, stations
 from .stations.util import contains_html, find_mime_type
 
+from.streamContent import get_streamContent_url
+
+
 
 # Minimum confidence levels
 CONF_EXACT_MATCH = 0.9
@@ -249,6 +252,9 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station radio text: {station.radio_text}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
+
+            get_streamContent_url()
+            self.log.info(f'Artist from stream: {get_streamContent_url}')
 
             # Add picture to gui
             self.gui.clear()

@@ -26,7 +26,6 @@ from .ft import get_ft_url
 from .gpb import get_gpb_url
 from .tsf import get_tsf_url
 
-
 class BaseStation(ABC):
     """Abstract Base Class for all Radio Stations."""
     def __init__(self, acronym: str, full_name: str, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
