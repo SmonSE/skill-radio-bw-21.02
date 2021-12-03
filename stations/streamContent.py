@@ -13,9 +13,10 @@ except ImportError:  # Python 3
     import urllib.request as urllib2
 
 
-def get_streamContent_url(radiotext: str) -> str:
+def find_metaData_url(meta_url: str) -> str:
 
-    url = 'https://liveradio.swr.de/sw282p3/dasding/play.mp3'  # radio stream
+    url = meta_url
+    #url = 'https://liveradio.swr.de/sw282p3/dasding/play.mp3'  # radio stream
     #url = 'https://streams.bigfm.de/bigfm-deutschland-128-mp3'  # radio stream
     encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
     request = urllib2.Request(url, headers={'Icy-MetaData': 1})  # request metadata
@@ -44,4 +45,5 @@ def get_streamContent_url(radiotext: str) -> str:
         
     #mp3Artist = title.decode(encoding, errors='replace')
     LOG.info(f'#META#: {title}') 
+    
     return title
