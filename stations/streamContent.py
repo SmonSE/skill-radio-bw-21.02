@@ -32,13 +32,13 @@ def get_streamContent_url():
         if m:
          title = m.group(1)
          if title:
+            self.log.info(f'got title')
                break
         else: 
             sys.exit('no title found')
+            self.log.info(f'no title found')
         
         print(title.decode(encoding, errors='replace'))
         mp3Artist = title.encode(encoding='iso-8859-1',errors='replace')
-
-        self.log.info(f'get_streamContent_url::title.encoded: {mp3Artist)}')
 
         return mp3Artist
