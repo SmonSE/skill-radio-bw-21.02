@@ -16,7 +16,7 @@ def get_streamContent_url():
     encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
     request = urllib2.Request(url, headers={'Icy-MetaData': 1})  # request metadata
     response = urllib2.urlopen(request)
-    LOG.info(response.headers, file=sys.stderr)
+    #LOG.info(response.headers)
 
     metaint = int(response.headers['icy-metaint'])
     for _ in range(10): # # title may be empty initially, try several times
