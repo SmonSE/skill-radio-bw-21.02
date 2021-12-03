@@ -36,7 +36,7 @@ def get_streamContent_url():
             sys.exit('no title found')
             LOG.info("This is an info level log message.")
         
-    LOG.info(f'MetaData: {title.decode(encoding, errors='ignore')}')
+    LOG.info(f'Title: {title.decode()}')
     mp3Artist = title.decode(encoding, errors='ignore')
     LOG.info("### DREI ###")
 
