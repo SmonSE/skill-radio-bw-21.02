@@ -13,7 +13,7 @@ except ImportError:  # Python 3
 def get_streamContent_url():
 
     url = 'https://liveradio.swr.de/sw282p3/dasding/play.mp3'  # radio stream
-    encoding = 'Latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
+    encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
     request = urllib2.Request(url, headers={'Icy-MetaData': 1})  # request metadata
     response = urllib2.urlopen(request)
     print(response.headers, file=sys.stderr)
