@@ -12,7 +12,15 @@ try:
 except ImportError:  # Python 3
     import urllib.request as urllib2
 
-def get_streamContent_url():
+def __init__(self, title: str = None):
+        self.title = title
+
+def as_dict(self):
+        return {
+            'title': self.title,
+        }
+
+def get_streamContent_url(self) -> str:
 
     url = 'https://liveradio.swr.de/sw282p3/dasding/play.mp3'  # radio stream
     #url = 'https://streams.bigfm.de/bigfm-deutschland-128-mp3'  # radio stream
@@ -43,4 +51,4 @@ def get_streamContent_url():
         
     #mp3Artist = title.decode(encoding, errors='replace')
     LOG.info(f'#META#: {title}') 
-    return str(title)
+    return title
