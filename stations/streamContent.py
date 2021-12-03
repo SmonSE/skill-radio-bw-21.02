@@ -1,6 +1,7 @@
 # https://stackoverflow.com/questions/35102278/python-3-get-song-name-from-internet-radio-stream
 
-from __future__ import print_function
+from __init__ import print_function
+from urllib.request import urlopen
 import re
 import struct
 import sys
