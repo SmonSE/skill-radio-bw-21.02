@@ -28,7 +28,7 @@ def get_streamContent_url():
 
         # extract title from the metadata
         #m = re.search(br"StreamTitle='([^']*)';", metadata)
-        m = re.search(br"='([^']*)';", metadata)
+        m = re.search(br"title'([^']*)';", metadata)
         LOG.info(f'MetaData m: {m}') 
 
         if m:
