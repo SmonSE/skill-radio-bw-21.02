@@ -257,7 +257,7 @@ class RadioSkill(CommonPlaySkill):
 
             # Add picture to gui
             self.gui.clear()
-            self.gui.show_image(station.station_logo_url, caption=station.full_name, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=station.full_name, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
