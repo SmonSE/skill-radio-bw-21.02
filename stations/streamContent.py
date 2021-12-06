@@ -12,12 +12,9 @@ try:
 except ImportError:  # Python 3
     import urllib.request as urllib2
 
-
 def find_metaData_url(meta_url: str) -> str:
 
     url = meta_url
-    #url = 'https://liveradio.swr.de/sw282p3/dasding/play.mp3'  # radio stream
-    #url = 'https://streams.bigfm.de/bigfm-deutschland-128-mp3'  # radio stream
     encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
     request = urllib2.Request(url, headers={'Icy-MetaData': 1})  # request metadata
     response = urllib2.urlopen(request)
@@ -28,10 +25,8 @@ def find_metaData_url(meta_url: str) -> str:
         response.read(metaint)  # skip to metadata
         metadata_length = struct.unpack('B', response.read(1))[0] * 16  # length byte
         metadata = response.read(metadata_length).rstrip(b'\0')
-        #LOG.info(f'MetaData length: {metadata_length}')
 
         # extract title from the metadata
-        #MetaData m: <_sre.SRE_Match object; span=(11, 51), match=b"='Bitch better have my money - Rihanna';">
         meta = re.search(br"'([^']*)';", metadata)
         LOG.info(f'MetaData: {meta}') 
 
