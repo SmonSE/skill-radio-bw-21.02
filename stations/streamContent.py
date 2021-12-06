@@ -12,6 +12,7 @@ try:
 except ImportError:  # Python 3
     import urllib.request as urllib2
 
+
 def find_metaData_url(meta_url: str) -> str:
 
     url = meta_url
@@ -41,4 +42,4 @@ def find_metaData_url(meta_url: str) -> str:
     mp3Artist = title.decode(encoding, errors='replace')
     LOG.info(f'#META#: {mp3Artist}') 
 
-    return title
+    return mp3Artist

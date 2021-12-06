@@ -254,10 +254,10 @@ class RadioSkill(CommonPlaySkill):
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
 
-            encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
-            encodeArtist = artistTitle.decode(encoding, errors='replace')
-            self.log.info(f'#META in INIT#: {encodeArtist}') 
-            self.log.info(f'Artist from stream in INIT: {encodeArtist}')
+            #encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
+            #encodeArtist = artistTitle.decode(encoding, errors='replace')
+            #self.log.info(f'#META in INIT#: {encodeArtist}') 
+            self.log.info(f'Artist from stream in INIT: {artistTitle}')
 
 
             # Add picture to gui
