@@ -32,7 +32,7 @@ def find_metaData_url(meta_url: str) -> str:
 
         # extract title from the metadata
         #MetaData m: <_sre.SRE_Match object; span=(11, 51), match=b"='Bitch better have my money - Rihanna';">
-        meta = re.search(r"'([^']*)';", metadata)
+        meta = re.search(br"'([^']*)';", metadata)
         LOG.info(f'MetaData: {meta}') 
 
         if meta:
