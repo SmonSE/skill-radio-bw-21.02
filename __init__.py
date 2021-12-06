@@ -254,7 +254,9 @@ class RadioSkill(CommonPlaySkill):
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
 
-            self.log.info(f'Artist from stream: {artistTitle}')
+            convertedArtist = artistTitle.decode(encoding, errors='replace')
+            self.log.info(f'#META in INIT#: {convertedArtist}') 
+            self.log.info(f'Artist from stream in INIT: {convertedArtist}')
 
 
             # Add picture to gui
