@@ -12,30 +12,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import re
+#import re
 
-import feedparser
-import requests
+#import feedparser
+#import requests
 
-def get_gpb_url():
-    """Custom radio fetcher for GPB radio.
-    
-    Uses an RSS feed with a mixture of content. This fetches the latest 
-    headlines episode."""
-    feed = 'http://feeds.feedburner.com/gpbnews/GeorgiaRSS?format=xml'
-    data = feedparser.parse(feed)
-    next_link = None
-    for entry in data['entries']:
-        # Find the first mp3 link with "GPB {time} Headlines" in title
-        if 'GPB' in entry['title'] and 'Headlines' in entry['title']:
-            next_link = entry['links'][0]['href']
-            break
-    html = requests.get(next_link)
-    # Find the first mp3 link
-    # Note that the latest mp3 may not be radio,
-    # but could be an interview, etc.
-    mp3_find = re.search(r'href="(?P<mp3>.+\.mp3)"'.encode(), html.content)
-    if mp3_find is None:
-        return None
-    url = mp3_find.group('mp3').decode('utf-8')
-    return url
+#def get_gpb_url():
+#    """Custom radio fetcher for GPB radio.
+#    
+#    Uses an RSS feed with a mixture of content. This fetches the latest 
+#    headlines episode."""
+#    feed = 'http://feeds.feedburner.com/gpbnews/GeorgiaRSS?format=xml'
+#    data = feedparser.parse(feed)
+#    next_link = None
+#    for entry in data['entries']:
+#        # Find the first mp3 link with "GPB {time} Headlines" in title
+#        if 'GPB' in entry['title'] and 'Headlines' in entry['title']:
+#            next_link = entry['links'][0]['href']
+#            break
+#    html = requests.get(next_link)
+#    # Find the first mp3 link
+#    # Note that the latest mp3 may not be radio,
+#    # but could be an interview, etc.
+#    mp3_find = re.search(r'href="(?P<mp3>.+\.mp3)"'.encode(), html.content)
+#    if mp3_find is None:
+#        return None
+#    url = mp3_find.group('mp3').decode('utf-8')
+#    return url
