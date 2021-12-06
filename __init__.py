@@ -98,11 +98,11 @@ class RadioSkill(CommonPlaySkill):
             station = self.get_default_station()
         self.handle_play_request(station)
 
-    #@intent_handler(AdaptIntent('').require('Restart'))
-    #def restart_playback(self, message):
-    #    self.log.info('Restarting last station to be played')
-    #    if self.last_station_played:
-    #        self.handle_play_request(self.last_station_played)
+    @intent_handler(AdaptIntent('').require('Restart'))
+    def restart_playback(self, message):
+        self.log.info('Restarting last station to be played')
+        if self.last_station_played:
+            self.handle_play_request(self.last_station_played)
 
     def CPS_start(self, _, data):
         """Handle request from Common Play System to start playback."""
@@ -258,7 +258,6 @@ class RadioSkill(CommonPlaySkill):
              # Add picture to gui
             self.gui.clear()
             self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
