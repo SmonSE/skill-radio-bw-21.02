@@ -236,7 +236,7 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
-    def refresh_gui(self) -> bool:
+    def refresh_gui(self, station: BaseStation) -> bool:
         """Update GUI permanent regarding radio text, artist and title."""
         while True:
              # Add picture to gui
