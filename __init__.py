@@ -265,7 +265,7 @@ class RadioSkill(CommonPlaySkill):
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
 
-            self.refresh_gui()
+            self.refresh_gui(True)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
@@ -307,6 +307,8 @@ class RadioSkill(CommonPlaySkill):
         if self.now_playing is None:
             return False
         self.now_playing = None
+        #Stop Updating Gui 
+        self.refresh_gui(True)
         # Disable restarting when stopped
         if self.last_station_played:
             self.disable_intent('restart_playback')
