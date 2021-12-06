@@ -15,7 +15,6 @@
 import os
 import subprocess
 import time
-import datetime
 
 from urllib.parse import quote
 from mycroft import intent_handler, AdaptIntent
@@ -49,6 +48,7 @@ class RadioSkill(CommonPlaySkill):
         # Longer titles or alternative common names of feeds for searching
         self.alternate_station_names = self.load_alternate_station_names()
         self.settings_change_callback = self.on_websettings_changed
+        # Check Settings from Mycroft AI WEB
         self.on_websettings_changed()
 
     def load_alternate_station_names(self) -> dict:
@@ -98,11 +98,11 @@ class RadioSkill(CommonPlaySkill):
             station = self.get_default_station()
         self.handle_play_request(station)
 
-    @intent_handler(AdaptIntent('').require('Restart'))
-    def restart_playback(self, message):
-        self.log.info('Restarting last station to be played')
-        if self.last_station_played:
-            self.handle_play_request(self.last_station_played)
+    #@intent_handler(AdaptIntent('').require('Restart'))
+    #def restart_playback(self, message):
+    #    self.log.info('Restarting last station to be played')
+    #    if self.last_station_played:
+    #        self.handle_play_request(self.last_station_played)
 
     def CPS_start(self, _, data):
         """Handle request from Common Play System to start playback."""
@@ -116,7 +116,6 @@ class RadioSkill(CommonPlaySkill):
 
     def CPS_match_query_phrase(self, phrase: str) -> tuple((str, float, dict)):
         """Respond to Common Play Service query requests.
-
         Args:
             phrase: utterance request to parse
         Returns:
@@ -145,7 +144,6 @@ class RadioSkill(CommonPlaySkill):
 
     def download_media_file(self, url: str) -> str:
         """Download a media file and return path to the stream.
-
         Args:
             url (str): media file to download
         Returns:
@@ -212,10 +210,10 @@ class RadioSkill(CommonPlaySkill):
                 return True
         return False
 
-        def show_image(self, url, caption=None,
+    def show_image(self, url, caption=None,
                    title=None, fill=None,
                    override_idle=None, override_animations=False):
-            """Display a GUI page for viewing an image.
+        """Display a GUI page for viewing an image.
             Args:
                 url (str): Pointer to the image
                 caption (str): A caption to show under the image
@@ -228,7 +226,7 @@ class RadioSkill(CommonPlaySkill):
             override_animations (boolean):
                 True: Disables showing all platform skill animations.
                 False: 'Default' always show animations.
-            """
+        """
         self["image"] = url
         self["title"] = title
         self["caption"] = caption
@@ -236,10 +234,7 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
-    def refresh_gui(self) -> bool:
-        """Update GUI permanent regarding radio text, artist and title."""
-        self.log.info(f'Refresh GUI')
-
+ 
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
@@ -263,9 +258,7 @@ class RadioSkill(CommonPlaySkill):
              # Add picture to gui
             self.gui.clear()
             self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-            self.log.info(f'Station Logo')
 
-            self.refresh_gui()
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()

@@ -19,7 +19,6 @@ def find_metaData_url(meta_url: str) -> str:
     encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
     request = urllib2.Request(url, headers={'Icy-MetaData': 1})  # request metadata
     response = urllib2.urlopen(request)
-    #LOG.info(response.headers)
 
     metaint = int(response.headers['icy-metaint'])
     for _ in range(10): # # title may be empty initially, try several times
@@ -29,7 +28,7 @@ def find_metaData_url(meta_url: str) -> str:
 
         # extract title from the metadata
         meta = re.search(br"'([^']*)';", metadata)
-        LOG.info(f'MetaData: {meta}') 
+        #LOG.info(f'MetaData: {meta}') 
 
         if meta:
          title = meta.group(1)
@@ -37,9 +36,9 @@ def find_metaData_url(meta_url: str) -> str:
                break
         else: 
             sys.exit('no meta data found')
-            LOG.info("no meta data found.")
+            #LOG.info("no meta data found.")
         
     mp3Artist = title.decode(encoding, errors='replace')
-    LOG.info(f'#META#: {mp3Artist}') 
+    #LOG.info(f'#META#: {mp3Artist}') 
 
     return mp3Artist
