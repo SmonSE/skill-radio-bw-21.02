@@ -236,7 +236,7 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
-    def refresh_gui():
+    def refresh_gui(self) -> bool:
         """Update GUI permanent regarding radio text, artist and title."""
         while True:
              # Add picture to gui
@@ -308,7 +308,7 @@ class RadioSkill(CommonPlaySkill):
             return False
         self.now_playing = None
         #Stop Updating Gui 
-        self.refresh_gui(True)
+        self.refresh_gui(False)
         # Disable restarting when stopped
         if self.last_station_played:
             self.disable_intent('restart_playback')
