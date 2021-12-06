@@ -236,12 +236,9 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
-    def refresh_gui(self, station: BaseStation) -> bool:
+    def refresh_gui(self) -> bool:
         """Update GUI permanent regarding radio text, artist and title."""
         while True:
-             # Add picture to gui
-            self.gui.clear()
-            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
             self.log.info(f'GUI UPDATE')
             time.sleep(1)    
 
@@ -264,6 +261,11 @@ class RadioSkill(CommonPlaySkill):
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
+
+             # Add picture to gui
+            self.gui.clear()
+            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            self.log.info(f'Station Logo')
 
             self.refresh_gui()
 
@@ -304,6 +306,7 @@ class RadioSkill(CommonPlaySkill):
                 self.curl = None
     def stop(self) -> bool:
         """Respond to system stop commands."""
+        self.refresh_gui()
         if self.now_playing is None:
             return False
         self.now_playing = None
