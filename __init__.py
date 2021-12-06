@@ -238,9 +238,7 @@ class RadioSkill(CommonPlaySkill):
 
     def refresh_gui(self) -> bool:
         """Update GUI permanent regarding radio text, artist and title."""
-        while True:
-            self.log.info(f'GUI UPDATE')
-            time.sleep(1)    
+        self.log.info(f'Refresh GUI')
 
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
@@ -306,7 +304,6 @@ class RadioSkill(CommonPlaySkill):
                 self.curl = None
     def stop(self) -> bool:
         """Respond to system stop commands."""
-        self.refresh_gui()
         if self.now_playing is None:
             return False
         self.now_playing = None
