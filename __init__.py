@@ -253,9 +253,8 @@ class RadioSkill(CommonPlaySkill):
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
-            slicedArtist = artistTitle[1:]
 
-            self.log.info(f'Artist from stream: {slicedArtist}')
+            self.log.info(f'Artist from stream: {artistTitle}')
 
 
             # Add picture to gui
