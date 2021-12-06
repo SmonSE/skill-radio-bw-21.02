@@ -13,15 +13,15 @@
 # limitations under the License.
 """Defines a Radio Station object"""
 
-from abc import ABC, abstractproperty
+#from abc import ABC, abstractproperty
 from builtins import property
 from pathlib import Path
-from collections.abc import Callable
+#from collections.abc import Callable
 
 import feedparser
 from mycroft.util import LOG
 
-from .abc import get_abc_url
+#from .abc import get_abc_url
 from .ft import get_ft_url
 from .gpb import get_gpb_url
 from .tsf import get_tsf_url
