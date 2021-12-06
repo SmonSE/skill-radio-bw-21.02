@@ -15,6 +15,7 @@
 import os
 import subprocess
 import time
+import datetime
 
 from urllib.parse import quote
 from mycroft import intent_handler, AdaptIntent
@@ -235,6 +236,16 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
+
+    def refresh_gui():
+        """Update GUI permanent regarding radio text, artist and title."""
+        while True:
+             # Add picture to gui
+            self.gui.clear()
+            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            self.log.info(f'GUI UPDATE')
+            time.sleep(1)    
+
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
@@ -255,9 +266,7 @@ class RadioSkill(CommonPlaySkill):
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
 
-            # Add picture to gui
-            self.gui.clear()
-            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            refresh_gui()
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
