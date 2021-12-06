@@ -248,7 +248,6 @@ class RadioSkill(CommonPlaySkill):
 
             self.log.info(f'Station acronym: {station.acronym}')
             self.log.info(f'Station image file: {station.image_file}')
-            self.log.info(f'Station radio text: {station.radio_text}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
 
             #get_streamContent_url()

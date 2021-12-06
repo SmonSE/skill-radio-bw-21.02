@@ -25,11 +25,10 @@ from .abc import get_abc_url
 
 class BaseStation(ABC):
     """Abstract Base Class for all Radio Stations."""
-    def __init__(self, acronym: str, full_name: str, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
+    def __init__(self, acronym: str, full_name: str, image_file: str = None, station_logo_url: str = None):
         self.acronym = acronym
         self.full_name = full_name
         self.image_file = image_file
-        self.radio_text = radio_text
         self.station_logo_url = station_logo_url
 
     def as_dict(self):
@@ -37,7 +36,6 @@ class BaseStation(ABC):
             'acronym': self.acronym,
             'full_name': self.full_name,
             'image_path': str(self.image_path),
-            'radio_text': str(self.radio_text),
             'station_logo_url': str(self.station_logo_url),
         }
 
@@ -66,8 +64,8 @@ class BaseStation(ABC):
 
 class FileStation(BaseStation):
     """Radio Station that provides a static url for their latest briefing."""
-    def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
-        super().__init__(acronym, full_name, image_file, radio_text, station_logo_url)
+    def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, station_logo_url: str = None):
+        super().__init__(acronym, full_name, image_file, station_logo_url)
         self._media_url = media_url
 
     @property
@@ -78,8 +76,8 @@ class FileStation(BaseStation):
 
 class FetcherStation(BaseStation):
     """Radio Station that requires a custom url getter function."""
-    def __init__(self, acronym: str, full_name: str, url_getter: Callable, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
-        super().__init__(acronym, full_name, image_file, radio_text, station_logo_url)
+    def __init__(self, acronym: str, full_name: str, url_getter: Callable, image_file: str = None, station_logo_url: str = None):
+        super().__init__(acronym, full_name, image_file, station_logo_url)
         self._get_media_url = url_getter
 
     @property
@@ -92,8 +90,8 @@ class FetcherStation(BaseStation):
 
 class RSSStation(BaseStation):
     """Radio Station based on an RSS feed."""
-    def __init__(self, acronym: str, full_name: str, rss_url: str, image_file: str = None, radio_text: str = None, station_logo_url: str = None):
-        super().__init__(acronym, full_name, image_file, radio_text, station_logo_url)
+    def __init__(self, acronym: str, full_name: str, rss_url: str, image_file: str = None, station_logo_url: str = None):
+        super().__init__(acronym, full_name, image_file, station_logo_url)
         self._rss_url = rss_url
 
     @property
@@ -133,10 +131,8 @@ class RSSStation(BaseStation):
 
 def create_custom_station(station_url):
     """Create a new station from a custom url.
-
     First tests to see if the url can be read as an RSS feed, if not assumes it is a
     direct link.
-
     NOTE: it cannot be a FetcherStation because you can't define the fetching function.
     """
     is_rss_feed = feedparser.parse(station_url).entries > 0
@@ -171,7 +167,6 @@ stations = dict(
         'bigFM', 
         'https://streams.bigfm.de/bigfm-deutschland-128-mp3', 
         'None', 
-        'None', 
         'https://www.radio.de/images/broadcasts/af/e4/1444/4/c300.png'),
 
     DD=FileStation(
@@ -179,14 +174,12 @@ stations = dict(
         'DASDING', 
         'https://liveradio.swr.de/sw282p3/dasding/play.mp3', 
         'None',
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Dasding_2011.png/320px-Dasding_2011.png'),
 
     RGB=FileStation(
         'REGNBGN', 
         'REGENBOGEN', 
         'https://streams.regenbogen.de/rr-mannheim-128-mp3', 
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Radio_Regenbogen.svg/262px-Radio_Regenbogen.svg.png'),
 
@@ -195,14 +188,12 @@ stations = dict(
         'SWR3 Radio', 
         'https://liveradio.swr.de/sw282p3/swr3/play.mp3', 
         'None', 
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Swr3-logo.svg/320px-Swr3-logo.svg.png'),
 
     SWR1R=FileStation(
         'SWR1', 
         'SWR1 BW Radio', 
         'https://liveradio.swr.de/sw282p3/swr1bw/play.mp3', 
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/SWR1_BW_rechts_Logo.svg/320px-SWR1_BW_rechts_Logo.svg.png'),
 
@@ -211,14 +202,12 @@ stations = dict(
         'Die neue Welle', 
         'http://dieneuewelle.cast.addradio.de/dieneuewelle/simulcast/high/stream.mp3', 
         'None', 
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Die_neue_welle_2008.svg/263px-Die_neue_welle_2008.svg.png'),
 
     SHL=FileStation(
         'sunshine', 
         'sunshile live', 
         'http://stream.sunshine-live.de/hq/mp3-128', 
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sunshine_live_logo.svg/320px-Sunshine_live_logo.svg.png'),
 
@@ -227,14 +216,12 @@ stations = dict(
         'SWR4 Stuttgart', 
         'http://swr-swr4-bw.cast.addradio.de/swr/swr4/bw/mp3/128/stream.mp3', 
         'None', 
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/SWR4_Baden-Württemberg_Logo.svg/320px-SWR4_Baden-Württemberg_Logo.svg.png'),
 
     SWR4K=FileStation(
         'SWR4 KA', 
         'SWR4 Karlsruhe', 
         'http://swr-swr4-ka.cast.addradio.de/swr/swr4/ka/mp3/128/stream.mp3', 
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Swr4-logo.svg/320px-Swr4-logo.svg.png'),
 
@@ -243,14 +230,12 @@ stations = dict(
         'antenne 1', 
         'http://stream.antenne1.de/a1stg/livestream2.mp3', 
         'None', 
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Antenne_1_Logo.svg/272px-Antenne_1_Logo.svg.png'),
 
     RD7=FileStation(
         'radio7', 
         'Radio 7', 
         'http://radio7server.streamr.ru:8040/radio7256.mp3', 
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Radio_7_logo.svg/320px-Radio_7_logo.svg.png'),
 
@@ -259,14 +244,12 @@ stations = dict(
         'SWR 2', 
         'https://liveradio.swr.de/sw331ch/swr2', 
         'None', 
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/5/53/SWR2_Logo_bis_2014.png'),
 
     ENY=FileStation(
         'energy', 
         'Energy Stuttgart', 
         'http://media.mediatime.ru:8051/Energy', 
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Energy_Bern_Logo.png/301px-Energy_Bern_Logo.png'),
 
@@ -275,14 +258,12 @@ stations = dict(
         'Baden FM', 
         'http://badenfm.ip-streaming.net:8006/badenfm', 
         'None', 
-        'None', 
         'None'),
 
     EPR=FileStation(
         'europa-park', 
         'Europa-Park Radio', 
         'https://rs9.stream24.net/europa-park-radio.mp3', 
-        'None', 
         'None', 
         'https://blog.europapark.de/wp-content/uploads/2020/04/91610789_10156930933991440_1215580584919695360_n.jpg'),   
 
@@ -291,14 +272,12 @@ stations = dict(
         'Radio Seefunk', 
         'http://webradio.radio-seefunk.de:8000/live64', 
         'None', 
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/RADIO_SEEFUNK.svg/240px-RADIO_SEEFUNK.svg.png'), 
 
     BHH=FileStation(
         'bigFM Hip Hop', 
         'big FM Hip Hop', 
         'http://streams.bigfm.de/bigfm-dhiphopcharts-128-mp3', 
-        'None', 
         'None', 
         'https://www.phonostar.de/images/auto_created/bigfm_hiphop4184x184.png'),  
 
@@ -307,14 +286,12 @@ stations = dict(
         'big FM Charts', 
         'http://ilr.bigfm.de/bigfm-charts-128-mp3', 
         'None', 
-        'None', 
         'https://www.phonostar.de/images/auto_created/bigfm_charts4184x184.png'), 
 
     RLR=FileStation(
         'Rockland', 
         'Rockland Radio', 
         'http://stream.rockland.de/rockland.mp3', 
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Rockland_Radio_Logo.jpg/320px-Rockland_Radio_Logo.jpg'), 
 
@@ -323,14 +300,12 @@ stations = dict(
         'SWR Aktuell', 
         'http://liveradio.swr.de/sw282p3/swraktuell/play.mp3', 
         'None', 
-        'None', 
         'https://upload.wikimedia.org/wikipedia/commons/4/47/SWR_Aktuell_Logo.jpg'), 
 
     WDR3=FileStation(
         'WDR3', 
         'WDR3', 
         'http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3',
-        'None', 
         'None', 
         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/WDR_3_logo_2012.svg/320px-WDR_3_logo_2012.svg.png'), 
            
@@ -348,4 +323,5 @@ country_defaults = dict(
     SE='Ekot',
     UK='BBC',
     US='NPR',
+    
 )
