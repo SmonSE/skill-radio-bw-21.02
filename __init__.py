@@ -236,7 +236,6 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
-
     def refresh_gui():
         """Update GUI permanent regarding radio text, artist and title."""
         while True:
@@ -266,7 +265,7 @@ class RadioSkill(CommonPlaySkill):
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
 
-            refresh_gui()
+            self.refresh_gui()
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
