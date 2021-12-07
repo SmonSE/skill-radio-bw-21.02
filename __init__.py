@@ -15,6 +15,7 @@
 import os
 import subprocess
 import time
+from datetime import datetime
 
 from urllib.parse import quote
 from mycroft import intent_handler, AdaptIntent
@@ -234,6 +235,60 @@ class RadioSkill(CommonPlaySkill):
         self.show_page("SYSTEM_ImageFrame.qml", override_idle,
                        override_animations)
 
+
+    def current_time_radio(self, date_time: datetime) -> str:
+        """Format a the datetime into a string for GUI display.
+        The datetime builtin returns hour in two character format.  Remove the
+        leading zero when present.
+        Args:
+            date_time: the sunrise or sunset
+        Returns:
+            the value to display on the screen
+        """
+        if self.config_core["time_format"] == TWELVE_HOUR:
+            display_time = date_time.strftime("%I:%M")
+            if display_time.startswith("0"):
+                display_time = display_time[1:]
+        else:
+            display_time = date_time.strftime("%H:%M")
+
+        return display_time                   
+
+
+#    def update_gui_content(self):
+#        """Display hourly forecast on a device that supports the GUI.
+#        On the Mark II this screen is the final for current weather.  It can
+#        also be shown when the hourly forecast is requested.
+#        :param weather: hourly weather conditions from Open Weather Maps
+#        """
+#        hourly_forecast = []
+#        for hour_count, hourly in enumerate(weather.hourly):
+#            if not hour_count:
+#                continue
+#            if hour_count > 4:
+#                break
+#            if self.config_core["time_format"] == TWELVE_HOUR:
+#                # The datetime builtin returns hour in two character format.  Convert
+#                # to a integer and back again to remove the leading zero when present.
+#                hour = int(hourly.date_time.strftime("%I"))
+#                am_pm = hourly.date_time.strftime(" %p")
+#                formatted_time = str(hour) + am_pm
+#            else:
+#                formatted_time = hourly.date_time.strftime("%H:00")
+#            hourly_forecast.append(
+#                dict(
+#                    time=hourly.date_time.strftime(formatted_time),
+#                    precipitation=hourly.chance_of_precipitation,
+#                    temperature=hourly.temperature,
+#                    weatherCondition=hourly.condition.image,
+#                )
+#            )
+#        self.gui.clear()
+#        self.gui["weatherLocation"] = weather_location
+#        self.gui["hourlyForecast"] = dict(hours=hourly_forecast)
+#        self.gui.show_page("hourly_mark_ii.qml")
+                
+
  
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
@@ -249,6 +304,8 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station acronym: {station.acronym}')
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
+
+            self.log.info(f'Radio Time: {current_time_radio}')            
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
