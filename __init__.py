@@ -248,9 +248,9 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-    def update_station_content(self, station: BaseStation):
+    def update_station_content(self):
         """Update the station content to gui permantent."""
-        media_content = station.media_uri()
+        media_content = stations.media_url
         self.log.info(f'Load media content: {media_content}')
 
         #get_streamContent_url()
