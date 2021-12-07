@@ -255,12 +255,16 @@ class RadioSkill(CommonPlaySkill):
     def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         try:
+            media_url = station.media_uri
+            self.log.info(f'Load media content: {media_url}')
+
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
              # Add picture to gui
             self.gui.clear()
             self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+
         except ValueError as e:
             self.speak_dialog("could.not.load.the.radio.content")
             self.log.exception(e)    
