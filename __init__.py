@@ -261,6 +261,9 @@ class RadioSkill(CommonPlaySkill):
              # Add picture to gui
             self.gui.clear()
             self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+        except ValueError as e:
+            self.speak_dialog("could.not.load.the.radio.content")
+            self.log.exception(e)    
 
  
     def _play_station(self, station: BaseStation):
