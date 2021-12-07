@@ -236,7 +236,7 @@ class RadioSkill(CommonPlaySkill):
                        override_animations)
 
 
-    def current_time_radio(self, date_time: datetime) -> str:
+    def current_time_radio(self) -> str:
         """Format a the datetime into a string for GUI display.
         The datetime builtin returns hour in two character format.  Remove the
         leading zero when present.
@@ -246,7 +246,8 @@ class RadioSkill(CommonPlaySkill):
             the value to display on the screen
         """    
         now = datetime.now() # current date and time
-        timeToShow = now.strftime("%H:%M:%S")         
+        timeToShow = now.strftime("%H:%M:%S")    
+        self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
 #    def update_gui_content(self):
