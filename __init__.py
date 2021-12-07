@@ -244,8 +244,10 @@ class RadioSkill(CommonPlaySkill):
             date_time: the sunrise or sunset
         Returns:
             the value to display on the screen
-        """             
-
+        """    
+        now = datetime.now() # current date and time
+        timeToShow = now.strftime("%H:%M:%S")         
+        return timeToShow
 
 #    def update_gui_content(self):
 #        """Display hourly forecast on a device that supports the GUI.
@@ -297,10 +299,8 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
 
-            now = datetime.now() # current date and time
-            timeToShow = now.strftime("%H:%M:%S")
 
-            self.log.info(f'Radio Time: {timeToShow}')            
+            self.log.info(f'Radio Time: {current_time_radio}')            
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
