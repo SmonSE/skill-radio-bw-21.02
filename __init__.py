@@ -205,6 +205,8 @@ class RadioSkill(CommonPlaySkill):
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
+        # Update Station GUI content
+        self.update_station_content(station)
     @property
     def is_https_supported(self) -> bool:
         """Check if any available audioservice backend supports https."""
