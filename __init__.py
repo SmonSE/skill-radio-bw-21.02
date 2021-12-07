@@ -200,7 +200,7 @@ class RadioSkill(CommonPlaySkill):
             station: Instance of a Station to be played
         """
         # Update Station GUI content
-        self.update_station_content(station)
+        #self.update_station_content(station)
 
         self.stop()
         # Speak intro while downloading in background
