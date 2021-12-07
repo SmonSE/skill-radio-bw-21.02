@@ -244,15 +244,7 @@ class RadioSkill(CommonPlaySkill):
             date_time: the sunrise or sunset
         Returns:
             the value to display on the screen
-        """
-        if self.config_core["time_format"] == TWELVE_HOUR:
-            display_time = date_time.strftime("%I:%M")
-            if display_time.startswith("0"):
-                display_time = display_time[1:]
-        else:
-            display_time = date_time.strftime("%H:%M")
-
-        return display_time                   
+        """             
 
 
 #    def update_gui_content(self):
@@ -305,7 +297,8 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
 
-            timeToShow = self.current_time_radio
+            now = datetime.now() # current date and time
+            timeToShow = now.strftime("%H:%M:%S")
 
             self.log.info(f'Radio Time: {timeToShow}')            
 
