@@ -52,7 +52,7 @@ class RadioSkill(CommonPlaySkill):
         # Check Settings from Mycroft AI WEB
         self.on_websettings_changed()
         # Update GUI permanent
-        self.schedule_repeating_event(self.update_station_content, None, 1)
+        self.schedule_repeating_event(self.update_station_content, None, 10)
 
     def load_alternate_station_names(self) -> dict:
         """Load the list of alternate station names from alt.feed.name.value
@@ -257,6 +257,7 @@ class RadioSkill(CommonPlaySkill):
         try:
             media_url = station.media_uri
             self.log.info(f'Load media content: {media_url}')
+            mime = find_mime_type(media_url)
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
