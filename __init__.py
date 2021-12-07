@@ -251,38 +251,13 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
 
-#    def update_gui_content(self):
-#        """Display hourly forecast on a device that supports the GUI.
-#        On the Mark II this screen is the final for current weather.  It can
-#        also be shown when the hourly forecast is requested.
-#        :param weather: hourly weather conditions from Open Weather Maps
-#        """
-#        hourly_forecast = []
-#        for hour_count, hourly in enumerate(weather.hourly):
-#            if not hour_count:
-#                continue
-#            if hour_count > 4:
-#                break
-#            if self.config_core["time_format"] == TWELVE_HOUR:
-#                # The datetime builtin returns hour in two character format.  Convert
-#                # to a integer and back again to remove the leading zero when present.
-#                hour = int(hourly.date_time.strftime("%I"))
-#                am_pm = hourly.date_time.strftime(" %p")
-#                formatted_time = str(hour) + am_pm
-#            else:
-#                formatted_time = hourly.date_time.strftime("%H:00")
-#            hourly_forecast.append(
-#                dict(
-#                    time=hourly.date_time.strftime(formatted_time),
-#                    precipitation=hourly.chance_of_precipitation,
-#                    temperature=hourly.temperature,
-#                    weatherCondition=hourly.condition.image,
-#                )
-#            )
-#        self.gui.clear()
-#        self.gui["weatherLocation"] = weather_location
-#        self.gui["hourlyForecast"] = dict(hours=hourly_forecast)
-#        self.gui.show_page("hourly_mark_ii.qml")
+    def update_gui_content(self, artistTitle: str):
+        """Display hourly forecast on a device that supports the GUI.
+        On the Mark II this screen is the final for current weather.  It can
+        also be shown when the hourly forecast is requested.
+        :param weather: hourly weather conditions from Open Weather Maps
+        """
+        self.log.info(f'Artist from __init__: {artistTitle}')
                 
 
  
@@ -302,7 +277,9 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station logo url: {station.station_logo_url}')
 
 
-            self.log.info(f'Radio Time: {self.current_time_radio()}')            
+            self.log.info(f'Radio Time: {self.current_time_radio()}')      
+
+            update_gui_content() = find_metaData_url(media_url)
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
