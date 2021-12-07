@@ -199,14 +199,15 @@ class RadioSkill(CommonPlaySkill):
         Args:
             station: Instance of a Station to be played
         """
+        # Update Station GUI content
+        self.update_station_content(station)
+
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
-        # Update Station GUI content
-        self.update_station_content(station)
     @property
     def is_https_supported(self) -> bool:
         """Check if any available audioservice backend supports https."""
@@ -256,9 +257,8 @@ class RadioSkill(CommonPlaySkill):
 
     def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
-        media_content = station.media_uri
+        media_content = station._get_media_url
         self.log.info(f'Load media content: {media_content}')
-        mime = find_mime_type(media_content)
 
         #get_streamContent_url()
         artistTitle = find_metaData_url(media_content)
