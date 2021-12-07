@@ -250,7 +250,7 @@ class RadioSkill(CommonPlaySkill):
 
     def update_station_content(self):
         """Update the station content to gui permantent."""
-        self.log.info(f'Update GUI every 10 seconds')
+        self.log.info('Update GUI every 10 seconds')
         #media_content = stations.media_url
         #self.log.info(f'Load media content: {media_content}')
 
@@ -269,11 +269,11 @@ class RadioSkill(CommonPlaySkill):
             station (Station): Instance of a Station to be played
         """
         try:
+            self.log.info(f'Playing Radio feed: {station.full_name}')
             media_url = station.media_uri
+            self.log.info(f'Radio media url: {media_url}')
             mime = find_mime_type(media_url)
 
-            self.log.info(f'Playing Radio feed: {station.full_name}')
-            self.log.info(f'Radio media url: {media_url}')
             self.log.info(f'Station acronym: {station.acronym}')
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
@@ -283,9 +283,9 @@ class RadioSkill(CommonPlaySkill):
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
 
-             # Add picture to gui
-            #self.gui.clear()
-            #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            # Add picture to gui
+            self.gui.clear()
+            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
