@@ -250,16 +250,6 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-
-    def update_gui_content(self, artistTitle: str):
-        """Display hourly forecast on a device that supports the GUI.
-        On the Mark II this screen is the final for current weather.  It can
-        also be shown when the hourly forecast is requested.
-        :param weather: hourly weather conditions from Open Weather Maps
-        """
-        self.log.info(f'Artist from __init__: {artistTitle}')
-                
-
  
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
@@ -276,10 +266,7 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
 
-
             self.log.info(f'Radio Time: {self.current_time_radio()}')      
-
-            update_gui_content() = find_metaData_url(media_url)
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
