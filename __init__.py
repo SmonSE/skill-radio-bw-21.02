@@ -300,7 +300,7 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station logo url: {station.station_logo_url}')
 
 
-            self.log.info(f'Radio Time: {current_time_radio}')            
+            self.log.info(f'Radio Time: {self.current_time_radio}')            
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
