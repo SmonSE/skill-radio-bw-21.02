@@ -250,15 +250,16 @@ class RadioSkill(CommonPlaySkill):
 
     def update_station_content(self):
         """Update the station content to gui permantent."""
-        media_content = stations.media_url
-        self.log.info(f'Load media content: {media_content}')
+        self.log.info(f'Update GUI every 10 seconds')
+        #media_content = stations.media_url
+        #self.log.info(f'Load media content: {media_content}')
 
         #get_streamContent_url()
-        artistTitle = find_metaData_url(media_content)
-        self.log.info(f'Artist from __init__: {artistTitle}')
+        #artistTitle = find_metaData_url(media_content)
+        #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
         # Add picture to gui
-        self.gui.clear()
-        self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+        #self.gui.clear()
+        #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
    
 
  
