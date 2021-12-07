@@ -247,7 +247,7 @@ class RadioSkill(CommonPlaySkill):
         """    
         now = datetime.now() # current date and time
         timeToShow = now.strftime("%H:%M:%S")    
-        self.log.info(f'Radio Time: {timeToShow}')       
+        #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
 #    def update_gui_content(self):
