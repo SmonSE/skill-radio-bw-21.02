@@ -250,7 +250,7 @@ class RadioSkill(CommonPlaySkill):
 
     def update_station_content(self):
         """Update the station content to gui permantent."""
-        self.log.info('Update GUI every 10 seconds')
+        self.log.info("Update GUI every 10 seconds")
         #media_content = stations.media_url
         #self.log.info(f'Load media content: {media_content}')
 
