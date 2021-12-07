@@ -51,6 +51,8 @@ class RadioSkill(CommonPlaySkill):
         self.settings_change_callback = self.on_websettings_changed
         # Check Settings from Mycroft AI WEB
         self.on_websettings_changed()
+        # Init Time
+        self.current_time_radio = self.current_time_radio()
 
     def load_alternate_station_names(self) -> dict:
         """Load the list of alternate station names from alt.feed.name.value
