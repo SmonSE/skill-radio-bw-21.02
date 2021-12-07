@@ -242,14 +242,7 @@ class RadioSkill(CommonPlaySkill):
 
 
     def current_time_radio(self) -> str:
-        """Format a the datetime into a string for GUI display.
-        The datetime builtin returns hour in two character format.  Remove the
-        leading zero when present.
-        Args:
-            date_time: the sunrise or sunset
-        Returns:
-            the value to display on the screen
-        """    
+        """Format a the datetime into a string for GUI display."""    
         now = datetime.now() # current date and time
         timeToShow = now.strftime("%H:%M:%S")    
         #self.log.info(f'Radio Time: {timeToShow}')       
@@ -257,7 +250,7 @@ class RadioSkill(CommonPlaySkill):
 
     def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
-        media_content = station._get_media_url
+        media_content = station.media_uri()
         self.log.info(f'Load media content: {media_content}')
 
         #get_streamContent_url()
@@ -275,15 +268,14 @@ class RadioSkill(CommonPlaySkill):
             station (Station): Instance of a Station to be played
         """
         try:
-            self.log.info(f'Playing Radio feed: {station.full_name}')
             media_url = station.media_uri
-            self.log.info(f'Radio media url: {media_url}')
             mime = find_mime_type(media_url)
 
+            self.log.info(f'Playing Radio feed: {station.full_name}')
+            self.log.info(f'Radio media url: {media_url}')
             self.log.info(f'Station acronym: {station.acronym}')
             self.log.info(f'Station image file: {station.image_file}')
             self.log.info(f'Station logo url: {station.station_logo_url}')
-
             self.log.info(f'Radio Time: {self.current_time_radio()}')      
 
             #get_streamContent_url()
