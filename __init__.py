@@ -250,6 +250,7 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
+
 #    def update_gui_content(self):
 #        """Display hourly forecast on a device that supports the GUI.
 #        On the Mark II this screen is the final for current weather.  It can
