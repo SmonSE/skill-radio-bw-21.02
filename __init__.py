@@ -27,7 +27,7 @@ from .stations.match import match_station_from_utterance, Match
 from .stations.station import create_custom_station, BaseStation, country_defaults, stations
 from .stations.util import contains_html, find_mime_type
 
-from .stations.streamContent import find_metaData_url, get_meta_url
+from .stations.streamContent import find_metaData_url
 
 # Minimum confidence levels
 CONF_EXACT_MATCH = 0.9
@@ -277,9 +277,6 @@ class RadioSkill(CommonPlaySkill):
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
-
-            getUrl = find_meta_url(media_url)
-            self.log.info(f'Get Meta Url: {getUrl}')
 
             # Update GUI permanent  -> is working
             self.schedule_repeating_event(self.update_station_content, None, 10)

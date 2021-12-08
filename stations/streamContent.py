@@ -42,10 +42,3 @@ def find_metaData_url(meta_url: str) -> str:
     #LOG.info(f'#META#: {mp3Artist}') 
 
     return mp3Artist
-
-def get_meta_url(meta_url: str) -> str:
-
-    url = meta_url
-    LOG.info(f'#META-URL#: {url}') 
- 
-    return url
