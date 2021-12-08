@@ -248,7 +248,7 @@ class RadioSkill(CommonPlaySkill):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
 
-        media_content = station.acronym
+        media_content = acronym
         self.log.info(f'Load media content: {media_content}')
 
         #artistTitle = stations.streamContent.find_metaData_url(media_content)
