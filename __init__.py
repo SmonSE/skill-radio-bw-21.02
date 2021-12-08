@@ -327,7 +327,7 @@ class RadioSkill(CommonPlaySkill):
         """Respond to system stop commands."""
 
         # STOP Update GUI permanent:   -> is working
-        self.schedule_repeating_event(self.update_station_content, None, 0)
+        #self.schedule_repeating_event(self.update_station_content, None, 0)
 
         if self.now_playing is None:
             return False
