@@ -200,6 +200,7 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
+        self.update_station_content(station)
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
