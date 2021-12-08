@@ -248,7 +248,7 @@ class RadioSkill(CommonPlaySkill):
 
         self.log.info("Update GUI every 10 seconds")
 
-        med_url = station.media_url()
+        med_url = station.media_uri
         self.log.info(f'Radio media url: {med_url}')
 
         #media_content = stations.media_url
