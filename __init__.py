@@ -200,7 +200,7 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
-        self.update_station_content(station)
+        self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
     @property
@@ -243,20 +243,22 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-    
     def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
+        media_url = station.media_uri
+        self.log.info(f'Radio media url: {media_url}')
 
-        #self.log.info(f'Load media content: {station.acronym}')
+        #media_content = stations.media_url
+        #self.log.info(f'Load media content: {media_content}')
 
-        #artistTitle = stations.streamContent.find_metaData_url(media_content)
+        #get_streamContent_url()
+        #artistTitle = find_metaData_url(media_content)
         #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
-       
         # Add picture to gui
-        self.gui.clear()
-        #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
- 
+        #self.gui.clear()
+        #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+
 
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
@@ -277,6 +279,10 @@ class RadioSkill(CommonPlaySkill):
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
+
+            # Add picture to gui
+            #self.gui.clear()
+            #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
             # Update GUI permanent  -> is working
             self.schedule_repeating_event(self.update_station_content, None, 10)
