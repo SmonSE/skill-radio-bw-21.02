@@ -51,9 +51,6 @@ class RadioSkill(CommonPlaySkill):
         self.settings_change_callback = self.on_websettings_changed
         # Check Settings from Mycroft AI WEB
         self.on_websettings_changed()
-                    
-        # Update GUI permanent
-        self.schedule_repeating_event(self.update_station_content(station), None, 10)
 
     def load_alternate_station_names(self) -> dict:
         """Load the list of alternate station names from alt.feed.name.value
@@ -261,6 +258,7 @@ class RadioSkill(CommonPlaySkill):
         #self.gui.clear()
         #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
+
  
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
@@ -285,6 +283,9 @@ class RadioSkill(CommonPlaySkill):
             # Add picture to gui
             #self.gui.clear()
             #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+
+            # Update GUI permanent
+            self.schedule_repeating_event(self.update_station_content(station), None, 10)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
