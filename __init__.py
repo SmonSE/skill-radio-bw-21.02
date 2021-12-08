@@ -255,7 +255,7 @@ class RadioSkill(CommonPlaySkill):
        
         # Add picture to gui
         self.gui.clear()
-        self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+        #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
  
 
     def _play_station(self, station: BaseStation):
@@ -278,9 +278,8 @@ class RadioSkill(CommonPlaySkill):
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
 
-            #get_media_url()
-            #getUrl = find_meta_url(media_url)
-            #self.log.info(f'Get Meta Url: {getUrl}')
+            getUrl = find_meta_url(media_url)
+            self.log.info(f'Get Meta Url: {getUrl}')
 
             # Update GUI permanent  -> is working
             self.schedule_repeating_event(self.update_station_content, None, 10)
