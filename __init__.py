@@ -244,7 +244,7 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-    def update_station_content(self, station: BaseStation):
+    def update_station_content(station: BaseStation):
         """Update the station content to gui permantent."""
 
         self.log.info("Update GUI every 10 seconds update_station_content")
