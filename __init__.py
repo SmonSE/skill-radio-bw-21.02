@@ -27,7 +27,7 @@ from .stations.match import match_station_from_utterance, Match
 from .stations.station import create_custom_station, BaseStation, country_defaults, stations
 from .stations.util import contains_html, find_mime_type
 
-from .stations.streamContent import find_metaData_url
+from .stations.streamContent import find_metaData_url, get_meta_url
 
 # Minimum confidence levels
 CONF_EXACT_MATCH = 0.9
@@ -201,7 +201,6 @@ class RadioSkill(CommonPlaySkill):
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
         self.update_station_content(station)
-        self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
     @property
@@ -249,8 +248,7 @@ class RadioSkill(CommonPlaySkill):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
 
-        media_content = station.acronym
-        self.log.info(f'Load media content: {media_content}')
+        self.log.info(f'Load media content: {station.acronym}')
 
         #artistTitle = stations.streamContent.find_metaData_url(media_content)
         #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
@@ -279,6 +277,10 @@ class RadioSkill(CommonPlaySkill):
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from __init__: {artistTitle}')
+
+            #get_media_url()
+            getUrl = find_meta_url(media_url)
+            self.log.info(f'Get Meta Url: {getUrl}')
 
             # Add picture to gui
             #self.gui.clear()
