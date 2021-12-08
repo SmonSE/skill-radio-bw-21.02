@@ -247,8 +247,7 @@ class RadioSkill(CommonPlaySkill):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
         media_url = station.media_uri
-        artistTitleMeta = find_metaData_url(media_url)
-        self.log.info(f'Artist from __init__: {artistTitleMeta}')
+        self.log.info(f'Radio media url: {media_url}')
 
         #media_content = stations.media_url
         #self.log.info(f'Load media content: {media_content}')
@@ -261,7 +260,6 @@ class RadioSkill(CommonPlaySkill):
         #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
 
- 
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
@@ -327,7 +325,7 @@ class RadioSkill(CommonPlaySkill):
     def stop(self) -> bool:
         """Respond to system stop commands."""
 
-        # STOP Update GUI permanent
+        # STOP Update GUI permanent:   -> is working
         self.schedule_repeating_event(self.update_station_content, None, 0)
 
         if self.now_playing is None:
