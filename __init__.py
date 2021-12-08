@@ -200,7 +200,11 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
+        #
+        # Update GUI permanent  -> is working
+        #self.schedule_repeating_event(self.update_station_content(station), None, 10)
         self.update_station_content(station)
+        #
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
@@ -249,16 +253,13 @@ class RadioSkill(CommonPlaySkill):
 
         self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
-        self.log.info(f'Radio media url from update_station_content: {med_url}')
-
+        #self.log.info(f'Radio media url from update_station_content: {med_url}')
         artistTitle = find_metaData_url(med_url)
-        self.log.info(f'ArtistTitle from update_station_content: {med_url}')
+        #self.log.info(f'ArtistTitle from update_station_content: {med_url}')
 
-        #artistTitle = find_metaData_url(media_content)
-        #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
         # Add picture to gui
-        #self.gui.clear()
-        #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+        self.gui.clear()
+        self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
 
     def _play_station(self, station: BaseStation):
@@ -280,13 +281,6 @@ class RadioSkill(CommonPlaySkill):
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from _play_station: {artistTitle}')
-
-            # Add picture to gui
-            #self.gui.clear()
-            #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-
-            # Update GUI permanent  -> is working
-            #self.schedule_repeating_event(self.update_station_content(station), None, 10)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
@@ -327,7 +321,7 @@ class RadioSkill(CommonPlaySkill):
         """Respond to system stop commands."""
 
         # STOP Update GUI permanent:   -> is working
-        #self.schedule_repeating_event(self.update_station_content, None, 0)
+        #self.schedule_repeating_event(self.update_station_content(station), None, 10)
 
         if self.now_playing is None:
             return False
