@@ -25,12 +25,13 @@ from .abc import get_abc_url
 
 class BaseStation(ABC):
     """Abstract Base Class for all Radio Stations."""
-    def __init__(self, acronym: str, media_url: str, full_name: str, image_file: str = None, station_logo_url: str = None):
+    def __init__(self, acronym: str, full_name: str, media_url: str, image_file: str = None, station_logo_url: str = None):
         self.acronym = acronym
         self.full_name = full_name
+        self.media_url = media_url
         self.image_file = image_file
         self.station_logo_url = station_logo_url
-        self.media_url = media_url
+
 
     def as_dict(self):
         return {
