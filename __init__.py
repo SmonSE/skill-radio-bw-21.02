@@ -206,9 +206,9 @@ class RadioSkill(CommonPlaySkill):
         self.enable_intent('restart_playback')
 
         # Update GUI permanent  -> is working
-        repeat = None
-        repeat = self.update_station_content(station)
-        self.schedule_repeating_event(repeat, None, 15, data=None, name=None)
+        #repeat = None
+        #repeat = self.update_station_content(station)
+        #self.schedule_repeating_event(repeat, None, 15, data=None, name=None)
 
 
     @property
