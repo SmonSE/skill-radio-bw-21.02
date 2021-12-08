@@ -246,7 +246,7 @@ class RadioSkill(CommonPlaySkill):
     def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
-        self.log.info(f'Station acronym: {station.acronym}')   # -> fail missed station 
+        #self.log.info(f'Station acronym: {station.acronym}')   # -> fail missed station 
 
         #media_content = stations.media_url
         #self.log.info(f'Load media content: {media_content}')
