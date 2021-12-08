@@ -200,14 +200,12 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
-        #
         # Update GUI permanent  -> is working
-        #self.schedule_repeating_event(self.update_station_content(station), None, 10)
-        self.update_station_content(station)
-        #
+        self.schedule_repeating_event(self.update_station_content(station), None, 15)
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
+
     @property
     def is_https_supported(self) -> bool:
         """Check if any available audioservice backend supports https."""
@@ -247,6 +245,7 @@ class RadioSkill(CommonPlaySkill):
         timeToShow = now.strftime("%H:%M:%S")    
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
+
 
     def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
