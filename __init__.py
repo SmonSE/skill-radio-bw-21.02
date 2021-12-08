@@ -24,7 +24,7 @@ from mycroft.skills.common_play_skill import CommonPlaySkill, CPSMatchLevel
 from mycroft.util import get_cache_directory
 
 from .stations.match import match_station_from_utterance, Match
-from .stations.station import create_custom_station, BaseStation, country_defaults, stations, stationMeta
+from .stations.station import create_custom_station, BaseStation, country_defaults, stations
 from .stations.util import contains_html, find_mime_type
 
 from .stations.streamContent import find_metaData_url
@@ -243,10 +243,11 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-    def update_station_content(self, station: stationMeta):
+    def update_station_content(self):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
-        self.log.info(f'Station acronym: {stationMeta.acronym}')   # -> fail missed station 
+        artistTitleMeta = find_metaData_url(media_url)
+        self.log.info(f'Artist from __init__: {artistTitleMeta}')
 
         #media_content = stations.media_url
         #self.log.info(f'Load media content: {media_content}')
