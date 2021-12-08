@@ -60,7 +60,6 @@ class BaseStation(ABC):
     @abstractproperty
     def media_uri(self) -> str:
         """Get the uri for the media file to be played."""
-        LOG.info("### MEDIA URI CALLED ###")
         pass
 
 
