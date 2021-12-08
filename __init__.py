@@ -243,22 +243,6 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-    def update_station_content(self, station: BaseStation):
-        """Update the station content to gui permantent."""
-        self.log.info("Update GUI every 10 seconds")
-        media_url = station.media_uri
-        self.log.info(f'Radio media url: {media_url}')
-
-        #media_content = stations.media_url
-        #self.log.info(f'Load media content: {media_content}')
-
-        #get_streamContent_url()
-        #artistTitle = find_metaData_url(media_content)
-        #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
-        # Add picture to gui
-        #self.gui.clear()
-        #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-
 
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
@@ -304,6 +288,24 @@ class RadioSkill(CommonPlaySkill):
         except ValueError as e:
             self.speak_dialog("could.not.start.the.radio.feed")
             self.log.exception(e)
+
+
+    def update_station_content(self, station: BaseStation):
+        """Update the station content to gui permantent."""
+        self.log.info("Update GUI every 10 seconds")
+        media_url = station.media_uri
+        self.log.info(f'Radio media url: {media_url}')
+
+        #media_content = stations.media_url
+        #self.log.info(f'Load media content: {media_content}')
+
+        #get_streamContent_url()
+        #artistTitle = find_metaData_url(media_content)
+        #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
+        # Add picture to gui
+        #self.gui.clear()
+        #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+        
 
     def stop_curl_process(self):
         """Stop any running curl download process."""
