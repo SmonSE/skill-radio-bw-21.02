@@ -200,9 +200,7 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
-        # Update GUI permanent  -> is working
-        self.schedule_repeating_event(self.update_station_content(station), None, 10)
-        #
+        self.update_station_content(station)
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
@@ -250,12 +248,11 @@ class RadioSkill(CommonPlaySkill):
         """Update the station content to gui permantent."""
 
         self.log.info("Update GUI every 10 seconds")
-        med_url = station.media_uri
+        med_url = station.media_uri()
         self.log.info(f'Radio media url from update_station_content: {med_url}')
 
-        artistTitle = find_metaData_url(med_url)
-        self.log.info(f'ArtistTitle from update_station_content: {artistTitle}')
-
+        #artistTitle = find_metaData_url(media_content)
+        #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
         # Add picture to gui
         #self.gui.clear()
         #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
@@ -285,6 +282,8 @@ class RadioSkill(CommonPlaySkill):
             #self.gui.clear()
             #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
+            # Update GUI permanent  -> is working
+            #self.schedule_repeating_event(self.update_station_content(station), None, 10)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
