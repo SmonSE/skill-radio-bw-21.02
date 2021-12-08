@@ -243,9 +243,10 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-    def update_station_content(self):
+    def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
+        media_url = station.media_uri
         artistTitleMeta = find_metaData_url(media_url)
         self.log.info(f'Artist from __init__: {artistTitleMeta}')
 

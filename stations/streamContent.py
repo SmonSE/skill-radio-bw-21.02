@@ -13,7 +13,7 @@ except ImportError:  # Python 3
     import urllib.request as urllib2
 
 
-def find_metaData_url(meta_url: str) -> str:
+def find_metaData_url(self, meta_url: str) -> str:
 
     url = meta_url
     encoding = 'latin1' # default: iso-8859-1 for mp3 and utf-8 for ogg streams
