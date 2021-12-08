@@ -246,7 +246,7 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
 
-    def update_station_content(self, station: BaseStation):
+    def update_station_content(self, station: BaseStation = None):
         """Update the station content to gui permantent."""
 
         self.log.info("Update GUI every 10 seconds update_station_content")
@@ -279,6 +279,7 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artistTitle}')
 
             # Update GUI permanent  -> is working
+
             repeat = self.update_station_content(station)
             self.schedule_repeating_event(repeat, None, 15, data=None, name=None)
 
