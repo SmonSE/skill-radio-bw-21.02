@@ -25,16 +25,18 @@ from .abc import get_abc_url
 
 class BaseStation(ABC):
     """Abstract Base Class for all Radio Stations."""
-    def __init__(self, acronym: str, full_name: str, image_file: str = None, station_logo_url: str = None):
+    def __init__(self, acronym: str, media_url: str, full_name: str, image_file: str = None, station_logo_url: str = None):
         self.acronym = acronym
         self.full_name = full_name
         self.image_file = image_file
         self.station_logo_url = station_logo_url
+        self.media_url = media_url
 
     def as_dict(self):
         return {
             'acronym': self.acronym,
             'full_name': self.full_name,
+            'media_url': = self.media_url,
             'image_path': str(self.image_path),
             'station_logo_url': str(self.station_logo_url),
         }
@@ -59,7 +61,8 @@ class BaseStation(ABC):
     @abstractproperty
     def media_uri(self) -> str:
         """Get the uri for the media file to be played."""
-        pass
+        #pass
+        return self.media_url
 
 
 class FileStation(BaseStation):
