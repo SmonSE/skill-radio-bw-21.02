@@ -200,6 +200,7 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
+        self.update_station_content(station)
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
@@ -244,11 +245,11 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
     
-    def update_station_content(self, station: BaseStation = None):
+    def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
 
-        media_content = acronym
+        media_content = station.acronym
         self.log.info(f'Load media content: {media_content}')
 
         #artistTitle = stations.streamContent.find_metaData_url(media_content)
