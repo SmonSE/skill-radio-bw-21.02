@@ -261,6 +261,7 @@ class RadioSkill(CommonPlaySkill):
         self.gui.clear()
         self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
+
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
@@ -296,8 +297,6 @@ class RadioSkill(CommonPlaySkill):
             )
             self.now_playing = station.full_name
         except ValueError as e:
-            # STOP Update GUI permanent:   -> is working
-            self.schedule_repeating_event(self.update_station_content(station), None, 10)
             self.speak_dialog("could.not.start.the.radio.feed")
             self.log.exception(e)
 
