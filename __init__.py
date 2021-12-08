@@ -200,6 +200,7 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
+        self.update_station_content(station)
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
@@ -280,7 +281,7 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artistTitle}')
 
             # Update GUI permanent  -> is working
-            self.schedule_repeating_event(self.update_station_content(station), None, 15)
+            #self.schedule_repeating_event(self.update_station_content(station), None, 15)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
