@@ -247,9 +247,12 @@ class RadioSkill(CommonPlaySkill):
     def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
 
-        self.log.info("Update GUI every 10 seconds")
+        self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
         self.log.info(f'Radio media url from update_station_content: {med_url}')
+
+        artistTitle = find_metaData_url(med_url)
+        self.log.info(f'ArtistTitle from update_station_content: {med_url}')
 
         #artistTitle = find_metaData_url(media_content)
         #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
@@ -264,19 +267,19 @@ class RadioSkill(CommonPlaySkill):
             station (Station): Instance of a Station to be played
         """
         try:
-            self.log.info(f'Playing Radio feed: {station.full_name}')
+            self.log.info(f'Playing Radio feed _play_station: {station.full_name}')
             media_url = station.media_uri
-            self.log.info(f'Radio media url: {media_url}')
+            self.log.info(f'Radio media url _play_station: {media_url}')
             mime = find_mime_type(media_url)
 
-            self.log.info(f'Station acronym: {station.acronym}')
-            self.log.info(f'Station image file: {station.image_file}')
-            self.log.info(f'Station logo url: {station.station_logo_url}')
-            self.log.info(f'Radio Time: {self.current_time_radio()}')      
+            self.log.info(f'Station acronym _play_station: {station.acronym}')
+            self.log.info(f'Station image file _play_station: {station.image_file}')
+            self.log.info(f'Station logo url _play_station: {station.station_logo_url}')
+            self.log.info(f'Radio Time _play_station: {self.current_time_radio()}')      
 
             #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
-            self.log.info(f'Artist from __init__: {artistTitle}')
+            self.log.info(f'Artist from _play_station: {artistTitle}')
 
             # Add picture to gui
             #self.gui.clear()
