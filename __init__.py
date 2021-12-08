@@ -294,11 +294,11 @@ class RadioSkill(CommonPlaySkill):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
 
-        media_content = station.media_uri
+        media_content = station.acronym
         self.log.info(f'Load media content: {media_content}')
 
-        artistTitle = stations.streamContent.find_metaData_url(media_content)
-        self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
+        #artistTitle = stations.streamContent.find_metaData_url(media_content)
+        #self.log.info(f'Update GUI every 10 seconds: {artistTitle}')
        
         # Add picture to gui
         #self.gui.clear()
