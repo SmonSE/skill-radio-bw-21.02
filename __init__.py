@@ -205,9 +205,6 @@ class RadioSkill(CommonPlaySkill):
         self.last_station_played = station
         self.enable_intent('restart_playback')
 
-        # Update GUI permanent  -> is working
-        self.schedule_repeating_event(self.update_station_content(station), None, 15)
-
     @property
     def is_https_supported(self) -> bool:
         """Check if any available audioservice backend supports https."""
@@ -258,8 +255,8 @@ class RadioSkill(CommonPlaySkill):
         artistTitle = find_metaData_url(med_url)
         self.log.info(f'ArtistTitle from update_station_content: {med_url}')
         # Add picture to gui
-        #self.gui.clear()
-        #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+        self.gui.clear()
+        self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
 
     def _play_station(self, station: BaseStation):
@@ -278,9 +275,11 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station logo url _play_station: {station.station_logo_url}')
             self.log.info(f'Radio Time _play_station: {self.current_time_radio()}')      
 
-            #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from _play_station: {artistTitle}')
+
+            # Update GUI permanent  -> is working
+            self.schedule_repeating_event(self.update_station_content, None, 15, data=station, name=None)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
