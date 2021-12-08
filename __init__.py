@@ -51,8 +51,9 @@ class RadioSkill(CommonPlaySkill):
         self.settings_change_callback = self.on_websettings_changed
         # Check Settings from Mycroft AI WEB
         self.on_websettings_changed()
+                    
         # Update GUI permanent
-        self.schedule_repeating_event(self.update_station_content, None, 10)
+        self.schedule_repeating_event(self.update_station_content(station), None, 10)
 
     def load_alternate_station_names(self) -> dict:
         """Load the list of alternate station names from alt.feed.name.value
@@ -199,9 +200,6 @@ class RadioSkill(CommonPlaySkill):
         Args:
             station: Instance of a Station to be played
         """
-        # Update Station GUI content
-        #self.update_station_content(station)
-
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
@@ -248,9 +246,11 @@ class RadioSkill(CommonPlaySkill):
         #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow
 
-    def update_station_content(self):
+    def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds")
+        self.log.info(f'Station acronym: {station.acronym}')
+
         #media_content = stations.media_url
         #self.log.info(f'Load media content: {media_content}')
 
@@ -260,7 +260,6 @@ class RadioSkill(CommonPlaySkill):
         # Add picture to gui
         #self.gui.clear()
         #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-   
 
  
     def _play_station(self, station: BaseStation):
@@ -284,8 +283,8 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from __init__: {artistTitle}')
 
             # Add picture to gui
-            self.gui.clear()
-            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            #self.gui.clear()
+            #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
