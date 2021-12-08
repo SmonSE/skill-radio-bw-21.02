@@ -202,8 +202,8 @@ class RadioSkill(CommonPlaySkill):
         self.speak_dialog('radio', data={"from": station.full_name})
         #
         # Update GUI permanent  -> is working
-        #self.schedule_repeating_event(self.update_station_content(station), None, 10)
-        self.update_station_content(station)
+        self.schedule_repeating_event(self.update_station_content(station), None, 10)
+        #self.update_station_content(station)
         #
         self._play_station(station)
         self.last_station_played = station
@@ -321,7 +321,7 @@ class RadioSkill(CommonPlaySkill):
         """Respond to system stop commands."""
 
         # STOP Update GUI permanent:   -> is working
-        #self.schedule_repeating_event(self.update_station_content(station), None, 10)
+        self.schedule_repeating_event(self.update_station_content(station), None, 10)
 
         if self.now_playing is None:
             return False
