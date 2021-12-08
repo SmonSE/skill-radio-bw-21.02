@@ -36,7 +36,7 @@ class BaseStation(ABC):
         return {
             'acronym': self.acronym,
             'full_name': self.full_name,
-            'media_url': = self.media_url,
+            'media_url': self.media_url,
             'image_path': str(self.image_path),
             'station_logo_url': str(self.station_logo_url),
         }
