@@ -255,6 +255,15 @@ class RadioSkill(CommonPlaySkill):
         return artistTitle
 
 
+    def update_gui_start(self):
+        # Add picture to gui
+        self.log.debug("Update GUI Artist Title")
+        #self.log.debug(f'Update GUI Artist Title: {self.update_station_content(artistTitle)}')
+        #self.log.debug(f'Update GUI Station Logo: {station.station_logo_url}')
+        #self.gui.clear()
+        #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+
+
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
@@ -318,7 +327,6 @@ class RadioSkill(CommonPlaySkill):
 
         # STOP Update GUI permanent:   -> is working
         #self.schedule_repeating_event(self.update_station_content, None, 0)
-
         if self.now_playing is None:
             return False
         self.now_playing = None
@@ -330,15 +338,6 @@ class RadioSkill(CommonPlaySkill):
         self.stop_curl_process()
         self.CPS_send_status()
         return True
-
-    def update_gui_start(self):
-        # Add picture to gui
-        self.log.debug("Update GUI Artist Title")
-        #self.log.debug(f'Update GUI Artist Title: {self.update_station_content(artistTitle)}')
-        #self.log.debug(f'Update GUI Station Logo: {station.station_logo_url}')
-        #self.gui.clear()
-        #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-
 
 def create_skill():
     return RadioSkill()
