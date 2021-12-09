@@ -265,7 +265,7 @@ class RadioSkill(CommonPlaySkill):
         Args: 
             station (Station): Instance of a Station to be played
         """
-          try:
+        try:
             self.log.info(f'Playing Radio feed _play_station: {station.full_name}')
             media_url = station.media_uri
             self.log.info(f'Radio media url _play_station: {media_url}')
