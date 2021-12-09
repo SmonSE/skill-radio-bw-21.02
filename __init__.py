@@ -204,8 +204,7 @@ class RadioSkill(CommonPlaySkill):
         self.last_station_played = station
         self.enable_intent('restart_playback')
         # Update GUI permanent  -> is working
-        self.schedule_repeating_event(self.update_station_content(station), None, 10)
-        #self.update_station_content(station)
+        self.update_station_content(station)
 
     @property
     def is_https_supported(self) -> bool:
@@ -277,9 +276,12 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station logo url _play_station: {station.station_logo_url}')
             self.log.info(f'Radio Time _play_station: {self.current_time_radio()}')      
 
-            #get_streamContent_url()
+            self.schedule_repeating_event(find_metaData_url(media_url), None, 10)
+            
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from _play_station: {artistTitle}')
+
+            self.schedule_repeating_event(self.log.info(f'##ARTIST: {artistTitle}'), None, 10)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
