@@ -285,7 +285,8 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artistTitle}')
 
             # Update GUI permanent  -> is working
-            self.schedule_repeating_event(self.current_time_radio, None, 10)
+            #self.schedule_repeating_event(self.current_time_radio, None, 10)
+            self.schedule_repeating_event(self.gui_update, None, 10)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
