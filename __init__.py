@@ -205,12 +205,6 @@ class RadioSkill(CommonPlaySkill):
         self.last_station_played = station
         self.enable_intent('restart_playback')
 
-        # Update GUI permanent  -> is working
-        #repeat = None
-        #repeat = self.update_station_content(station)
-        #self.schedule_repeating_event(repeat, None, 15, data=None, name=None)
-
-
     @property
     def is_https_supported(self) -> bool:
         """Check if any available audioservice backend supports https."""
@@ -252,17 +246,14 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
 
-    def update_station_content(self, station: BaseStation):
+    def update_station_content(self, station: BaseStation) -> str:
         """Update the station content to gui permantent."""
-
         self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
         self.log.info(f'Radio media url from update_station_content: {med_url}')
         artistTitle = find_metaData_url(med_url)
         self.log.info(f'ArtistTitle from update_station_content: {med_url}')
-        # Add picture to gui
-        self.gui.clear()
-        self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+        return artistTitle
 
 
     def _play_station(self, station: BaseStation):
@@ -283,6 +274,9 @@ class RadioSkill(CommonPlaySkill):
 
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from _play_station: {artistTitle}')
+
+            # Update GUI permanent
+            self.schedule_repeating_event(self.update_gui_start, None, 15, data=None, name=None)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
@@ -336,6 +330,14 @@ class RadioSkill(CommonPlaySkill):
         self.stop_curl_process()
         self.CPS_send_status()
         return True
+
+    def update_gui_start(self, station: BaseStation):
+        # Add picture to gui
+        self.log.debug(f'Update GUI Artist Title: {self.update_station_content}')
+        self.log.debug(f'Update GUI Station Logo: {station.station_logo_url}')
+        #self.gui.clear()
+        #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+
 
 def create_skill():
     return RadioSkill()
