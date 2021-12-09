@@ -200,7 +200,6 @@ class RadioSkill(CommonPlaySkill):
         self.stop()
         # Speak intro while downloading in background
         self.speak_dialog('radio', data={"from": station.full_name})
-        self.update_station_content(station)
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
@@ -276,6 +275,7 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artistTitle}')
 
             # Update GUI permanent
+            self.update_gui_start
             self.schedule_repeating_event(self.update_gui_start, None, 10)
 
             # Ensure announcement of station has finished before playing
@@ -333,7 +333,8 @@ class RadioSkill(CommonPlaySkill):
 
     def update_gui_start(self):
         # Add picture to gui
-        self.log.debug(f'Update GUI Artist Title: {self.update_station_content}')
+        self.log.debug("Update GUI Artist Title")
+        #self.log.debug(f'Update GUI Artist Title: {self.update_station_content(artistTitle)}')
         #self.log.debug(f'Update GUI Station Logo: {station.station_logo_url}')
         #self.gui.clear()
         #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
