@@ -204,6 +204,9 @@ class RadioSkill(CommonPlaySkill):
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
+        # Update GUI permanent  -> is working
+        #self.schedule_repeating_event(self.update_station_content(station), None, 10)
+        self.update_station_content(station)
 
     @property
     def is_https_supported(self) -> bool:
@@ -246,7 +249,7 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
 
-      def update_station_content(self, station: BaseStation):
+    def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
@@ -259,7 +262,7 @@ class RadioSkill(CommonPlaySkill):
         self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
     
     
-         def _play_station(self, station: BaseStation):
+    def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
             station (Station): Instance of a Station to be played
