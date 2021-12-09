@@ -331,10 +331,10 @@ class RadioSkill(CommonPlaySkill):
         self.CPS_send_status()
         return True
 
-    def update_gui_start(self, station: BaseStation):
+    def update_gui_start(self):
         # Add picture to gui
         self.log.debug(f'Update GUI Artist Title: {self.update_station_content}')
-        self.log.debug(f'Update GUI Station Logo: {station.station_logo_url}')
+        #self.log.debug(f'Update GUI Station Logo: {station.station_logo_url}')
         #self.gui.clear()
         #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
