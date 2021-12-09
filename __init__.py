@@ -246,26 +246,20 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
 
-    def update_station_content(self, station: BaseStation) -> str:
+      def update_station_content(self, station: BaseStation):
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
-        self.log.info(f'Radio media url from update_station_content: {med_url}')
+        #self.log.info(f'Radio media url from update_station_content: {med_url}')
         artistTitle = find_metaData_url(med_url)
-        self.log.info(f'ArtistTitle from update_station_content: {med_url}')
-        return artistTitle
+        #self.log.info(f'ArtistTitle from update_station_content: {med_url}')
 
-
-    def update_gui_start(self):
         # Add picture to gui
-        self.log.debug("Update GUI Artist Title")
-        #self.log.debug(f'Update GUI Artist Title: {self.update_station_content(artistTitle)}')
-        #self.log.debug(f'Update GUI Station Logo: {station.station_logo_url}')
-        #self.gui.clear()
-        #self.gui.show_image(station.station_logo_url, caption=None, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-
-
-    def _play_station(self, station: BaseStation):
+        self.gui.clear()
+        self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+    
+    
+         def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
             station (Station): Instance of a Station to be played
@@ -281,12 +275,9 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station logo url _play_station: {station.station_logo_url}')
             self.log.info(f'Radio Time _play_station: {self.current_time_radio()}')      
 
+            #get_streamContent_url()
             artistTitle = find_metaData_url(media_url)
             self.log.info(f'Artist from _play_station: {artistTitle}')
-
-            # Update GUI permanent
-            self.update_gui_start()
-            self.schedule_repeating_event(self.update_gui_start, None, 10)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
