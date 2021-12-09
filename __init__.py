@@ -204,8 +204,8 @@ class RadioSkill(CommonPlaySkill):
         self.last_station_played = station
         self.enable_intent('restart_playback')
         # Update GUI permanent  -> is working
-        #self.schedule_repeating_event(self.update_station_content(station), None, 10)
-        self.update_station_content(station)
+        self.schedule_repeating_event(self.update_station_content(station), None, 10)
+        #self.update_station_content(station)
 
     @property
     def is_https_supported(self) -> bool:
