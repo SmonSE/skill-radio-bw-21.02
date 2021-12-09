@@ -258,7 +258,8 @@ class RadioSkill(CommonPlaySkill):
 
 
     def gui_update(self):
-        self.log.info(f'GUI_UPDATE: {self.update_station_content}')
+        test = self.update_station_content(artistTitle)
+        self.log.info(f'GUI_UPDATE: {test}')
         # Add picture to gui
         #self.gui.clear()
         #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
