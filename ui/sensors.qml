@@ -9,7 +9,7 @@ Mycroft.CardDelegate {
     id: homeAssistantRoot
     skillBackgroundColorOverlay: "transparent"
     cardBackgroundOverlayColor: "transparent"
-    skillBackgroundSource: Qt.resolvedUrl("wallpapers/home-assistant-default.png")
+    skillBackgroundSource: Qt.resolvedUrl(sensorValue)
 
     property bool hasSensorDescription: sessionData.sensorDescription.length > 0 ? true : false
 
