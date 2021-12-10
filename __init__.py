@@ -203,8 +203,6 @@ class RadioSkill(CommonPlaySkill):
         self._play_station(station)
         self.last_station_played = station
         self.enable_intent('restart_playback')
-        # Update GUI permanent  -> is working
-        #self.update_station_content(station)
 
     @property
     def is_https_supported(self) -> bool:
@@ -247,22 +245,14 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow 
 
 
-    def update_station_content(self, station: BaseStation = None) -> str:
-        """Update the station content to gui permantent."""
-        self.log.info("Update GUI every 10 seconds update_station_content")
-        med_url = station.media_uri
-        self.log.info(f'Radio media url from update_station_content: {med_url}')
-        artistTitle = find_metaData_url(med_url)
-        self.log.info(f'ArtistTitle from update_station_content: {med_url}')
-        return artistTitle
-
-
-    def gui_update(self):
-        test = self.update_station_content(None)
-        self.log.info(f'GUI_UPDATE: {test}')
-        # Add picture to gui
-        #self.gui.clear()
-        #self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+    #def update_station_content(self, station: BaseStation = None) -> str:
+    #    """Update the station content to gui permantent."""
+    #    self.log.info("Update GUI every 10 seconds update_station_content")
+    #    med_url = station.media_uri
+    #    self.log.info(f'Radio media url from update_station_content: {med_url}')
+    #    artistTitle = find_metaData_url(med_url)
+    #    self.log.info(f'ArtistTitle from update_station_content: {med_url}')
+    #    return artistTitle
 
     
     def _play_station(self, station: BaseStation):
@@ -286,8 +276,12 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artistTitle}')
 
             # Update GUI permanent  -> is working
-            #self.schedule_repeating_event(self.current_time_radio, None, 10)
-            self.schedule_repeating_event(self.gui_update, None, 10)
+            self.schedule_repeating_event(self.current_time_radio, None, 10)
+            #self.schedule_repeating_event(self.gui_update, None, 10)
+
+            # Add picture to gui
+            self.gui.clear()
+            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
