@@ -281,7 +281,7 @@ class RadioSkill(CommonPlaySkill):
 
             #get_streamContent_url()
             artist_Title = find_metaData_url(media_url)
-            self.log.info(f'Artist from _play_station: {artistTitle}')
+            self.log.info(f'Artist from _play_station: {artist_Title}')
 
             # Update GUI permanent  -> is working
             self.schedule_repeating_event(self.current_time_radio, None, 10)
