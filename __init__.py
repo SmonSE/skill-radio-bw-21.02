@@ -257,7 +257,7 @@ class RadioSkill(CommonPlaySkill):
         return artistTitle
 
 
-    def gui_update(self):
+    def gui_update(self, station: BaseStation = None):
         test = self.update_station_content()
         self.log.info(f'GUI_UPDATE: {test}')
         # Add picture to gui
