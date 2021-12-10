@@ -247,7 +247,7 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
 
-    def update_station_content(self, station: str) -> str:
+    def update_station_content(self, station: BaseStation = None) -> str:
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
@@ -257,8 +257,8 @@ class RadioSkill(CommonPlaySkill):
         return artistTitle
 
 
-    def gui_update(self, station: str):
-        test = self.update_station_content(station)
+    def gui_update(self):
+        test = self.update_station_content()
         self.log.info(f'GUI_UPDATE: {test}')
         # Add picture to gui
         #self.gui.clear()
