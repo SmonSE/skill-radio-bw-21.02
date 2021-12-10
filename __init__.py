@@ -51,7 +51,6 @@ class RadioSkill(CommonPlaySkill):
         self.settings_change_callback = self.on_websettings_changed
         # Check Settings from Mycroft AI WEB
         self.on_websettings_changed()
-        self.update_station_content = self.BaseStation
 
     def load_alternate_station_names(self) -> dict:
         """Load the list of alternate station names from alt.feed.name.value
@@ -245,10 +244,10 @@ class RadioSkill(CommonPlaySkill):
         now = datetime.now() # current date and time
         timeToShow = now.strftime("%H:%M:%S")    
         self.log.info(f'Radio Time: {timeToShow}')       
-        return timeToShow
+        return timeToShow 
 
 
-    def update_station_content(self, station: BaseStation) -> str:
+    def update_station_content(self, station: BaseStation = None) -> str:
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
@@ -259,7 +258,7 @@ class RadioSkill(CommonPlaySkill):
 
 
     def gui_update(self):
-        test = self.update_station_content
+        test = self.update_station_content(str, None)
         self.log.info(f'GUI_UPDATE: {test}')
         # Add picture to gui
         #self.gui.clear()
