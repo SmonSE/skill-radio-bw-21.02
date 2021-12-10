@@ -41,6 +41,7 @@ class RadioSkill(CommonPlaySkill):
         self.now_playing = None
         self.last_station_played = None
         self.curl = None
+        self.update_station_content = None
 
     def initialize(self):
         time.sleep(1)
@@ -257,8 +258,8 @@ class RadioSkill(CommonPlaySkill):
         return artistTitle
 
 
-    def gui_update(self, station: BaseStation = None):
-        test = self.update_station_content()
+    def gui_update(self):
+        test = self.update_station_content
         self.log.info(f'GUI_UPDATE: {test}')
         # Add picture to gui
         #self.gui.clear()
