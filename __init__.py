@@ -254,6 +254,14 @@ class RadioSkill(CommonPlaySkill):
     #    self.log.info(f'ArtistTitle from update_station_content: {med_url}')
     #    return artistTitle
 
+
+    def _display_sensor_dialog(self, name, value, description):
+        self.gui.clear()
+        self.gui["sensorName"] = name
+        self.gui["sensorValue"] = value
+        self.gui["sensorDescription"] = description
+        self.gui.show_page("sensors.qml", override_idle=15)
+
     
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
@@ -272,7 +280,7 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Radio Time _play_station: {self.current_time_radio()}')      
 
             #get_streamContent_url()
-            artistTitle = find_metaData_url(media_url)
+            artist_Title = find_metaData_url(media_url)
             self.log.info(f'Artist from _play_station: {artistTitle}')
 
             # Update GUI permanent  -> is working
@@ -280,8 +288,14 @@ class RadioSkill(CommonPlaySkill):
             #self.schedule_repeating_event(self.gui_update, None, 10)
 
             # Add picture to gui
-            self.gui.clear()
-            self.gui.show_image(station.station_logo_url, caption=artistTitle, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            #self.gui.clear()
+            #self.gui.show_image(station.station_logo_url, caption=artist_Title, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+
+            self._display_sensor_dialog(
+                station.full_name,
+                station.station_logo_url,
+                artist_Title
+            )
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
