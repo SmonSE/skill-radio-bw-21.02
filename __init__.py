@@ -41,7 +41,6 @@ class RadioSkill(CommonPlaySkill):
         self.now_playing = None
         self.last_station_played = None
         self.curl = None
-        self.update_station_content = None
 
     def initialize(self):
         time.sleep(1)
@@ -52,6 +51,7 @@ class RadioSkill(CommonPlaySkill):
         self.settings_change_callback = self.on_websettings_changed
         # Check Settings from Mycroft AI WEB
         self.on_websettings_changed()
+        self.update_station_content = self.BaseStation
 
     def load_alternate_station_names(self) -> dict:
         """Load the list of alternate station names from alt.feed.name.value
@@ -205,7 +205,7 @@ class RadioSkill(CommonPlaySkill):
         self.last_station_played = station
         self.enable_intent('restart_playback')
         # Update GUI permanent  -> is working
-        self.update_station_content(station)
+        #self.update_station_content(station)
 
     @property
     def is_https_supported(self) -> bool:
@@ -248,7 +248,7 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow
 
 
-    def update_station_content(self, station: BaseStation = None) -> str:
+    def update_station_content(self, station: BaseStation) -> str:
         """Update the station content to gui permantent."""
         self.log.info("Update GUI every 10 seconds update_station_content")
         med_url = station.media_uri
