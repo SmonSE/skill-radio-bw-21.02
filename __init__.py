@@ -288,14 +288,14 @@ class RadioSkill(CommonPlaySkill):
             #self.schedule_repeating_event(self.gui_update, None, 10)
 
             # Add picture to gui
-            #self.gui.clear()
-            #self.gui.show_image(station.station_logo_url, caption=artist_Title, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            self.gui.clear()
+            self.gui.show_image(station.station_logo_url, caption=artist_Title, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
-            self._display_sensor_dialog(
-                station.full_name,
-                station.station_logo_url,
-                artist_Title
-            )
+            #self._display_sensor_dialog(
+            #    station.full_name,
+            #    station.station_logo_url,
+            #    artist_Title
+            #)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
