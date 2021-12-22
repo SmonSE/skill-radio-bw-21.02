@@ -52,7 +52,7 @@ class BaseStation(ABC):
         skill_path = Path(__file__).parent.parent.absolute()
         file_path = Path(skill_path, 'images', self.image_file)
         if not file_path.exists():
-            LOG.warning(
+            LOG.info(
                 f'{self.image_file} could not be found, using default image')
             file_path = Path(skill_path, 'images', 'generic.png')
         return file_path
