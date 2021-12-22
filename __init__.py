@@ -105,15 +105,15 @@ class RadioSkill(CommonPlaySkill):
         if self.last_station_played:
             self.handle_play_request(self.last_station_played)
 
-    def CPS_start(self, _, data):
-        """Handle request from Common Play System to start playback."""
-        if data and data.get('acronym'):
-            # Play the requested Radio service
-            selected_station = stations[data['acronym']]
-        else:
-            # Just use the default Radio feed
-            selected_station = self.get_default_station()
-        self.handle_play_request(selected_station)
+    #def CPS_start(self, _, data):
+    #    """Handle request from Common Play System to start playback."""
+    #    if data and data.get('acronym'):
+    #        # Play the requested Radio service
+    #        selected_station = stations[data['acronym']]
+    #    else:
+    #        # Just use the default Radio feed
+    #        selected_station = self.get_default_station()
+    #    self.handle_play_request(selected_station)
 
     def CPS_match_query_phrase(self, phrase: str) -> tuple((str, float, dict)):
         """Respond to Common Play Service query requests.
@@ -278,7 +278,12 @@ class RadioSkill(CommonPlaySkill):
             wait_while_speaking()
             # If backend cannot handle https, download the file and provide a local stream.
 
-             self.audioservice.play(media_url)
+            #self.audioservice.play(media_url)
+            self.CPS_play((media_url, mime))
+            self.CPS_send_status(
+                image=str(station.image_path),
+                artist=station.full_name
+            )
 
             #if media_url[:8] == 'https://' and not self.is_https_supported:
             #    stream = self.download_media_file(media_url)

@@ -160,7 +160,6 @@ stations = dict(
     #   full_name: str, 
     #   media_url: str,
     #   image_file: str, 
-    #   radio_text: str, 
     #   station_logo_url: str):
 
     BFM=FileStation(
