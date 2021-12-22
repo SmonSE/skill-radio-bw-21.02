@@ -245,15 +245,14 @@ class RadioSkill(CommonPlaySkill):
         return timeToShow 
 
 
-    #def update_station_content(self, station: BaseStation = None) -> str:
-    #    """Update the station content to gui permantent."""
-    #    self.log.info("Update GUI every 10 seconds update_station_content")
-    #    med_url = station.media_uri
-    #    self.log.info(f'Radio media url from update_station_content: {med_url}')
-    #    artistTitle = find_metaData_url(med_url)
-    #    self.log.info(f'ArtistTitle from update_station_content: {med_url}')
-    #    return artistTitle
-
+    def update_station_content(self, station: BaseStation = None) -> str:
+        """Update the station content to gui permantent."""
+        self.log.info("Update GUI every 10 seconds update_station_content")
+        med_url = station.media_uri
+        self.log.info(f'Radio media url from update_station_content: {med_url}')
+        artistTitle = find_metaData_url(med_url)
+        self.log.info(f'ArtistTitle from update_station_content: {med_url}')
+        return artistTitle
 
     #def _display_sensor_dialog(self, name, value, description):
     #    self.gui.clear()
@@ -262,7 +261,6 @@ class RadioSkill(CommonPlaySkill):
     #    self.gui["sensorDescription"] = description
     #    self.gui.show_page("sensors.qml", override_idle=15)
 
-    
     def _play_station(self, station: BaseStation):
         """Play the given station using the most appropriate service.    
         Args: 
@@ -284,18 +282,12 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artist_Title}')
 
             # Update GUI permanent  -> is working
-            self.schedule_repeating_event(self.current_time_radio, None, 10)
+            #self.schedule_repeating_event(self.current_time_radio, None, 10)
             #self.schedule_repeating_event(self.gui_update, None, 10)
 
             # Add picture to gui
             #self.gui.clear()
             #self.gui.show_image(station.station_logo_url, caption=artist_Title, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
-
-            #self._display_sensor_dialog(
-            #    station.full_name,
-            #    station.station_logo_url,
-            #    artist_Title
-            #)
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
