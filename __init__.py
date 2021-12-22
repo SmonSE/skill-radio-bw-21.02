@@ -255,12 +255,12 @@ class RadioSkill(CommonPlaySkill):
     #    return artistTitle
 
 
-    def _display_sensor_dialog(self, name, value, description):
-        self.gui.clear()
-        self.gui["sensorName"] = name
-        self.gui["sensorValue"] = value
-        self.gui["sensorDescription"] = description
-        self.gui.show_page("sensors.qml", override_idle=15)
+    #def _display_sensor_dialog(self, name, value, description):
+    #    self.gui.clear()
+    #    self.gui["sensorName"] = name
+    #    self.gui["sensorValue"] = value
+    #    self.gui["sensorDescription"] = description
+    #    self.gui.show_page("sensors.qml", override_idle=15)
 
     
     def _play_station(self, station: BaseStation):
@@ -288,8 +288,8 @@ class RadioSkill(CommonPlaySkill):
             #self.schedule_repeating_event(self.gui_update, None, 10)
 
             # Add picture to gui
-            self.gui.clear()
-            self.gui.show_image(station.station_logo_url, caption=artist_Title, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
+            #self.gui.clear()
+            #self.gui.show_image(station.station_logo_url, caption=artist_Title, title=None, fill='PreserveAspectFit', override_idle=None, override_animations=False)
 
             #self._display_sensor_dialog(
             #    station.full_name,
