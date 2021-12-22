@@ -275,8 +275,9 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artist_Title}')
 
             # Ensure announcement of station has finished before playing
-            wait_while_speaking()
+            #wait_while_speaking()
             # If backend cannot handle https, download the file and provide a local stream.
+            
             if media_url[:8] == 'https://' and not self.is_https_supported:
                 stream = self.download_media_file(media_url)
                 self.CPS_play((f"file://{stream}", mime))
