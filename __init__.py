@@ -271,23 +271,25 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Station logo url _play_station: {station.station_logo_url}')
             self.log.info(f'Radio Time _play_station: {self.current_time_radio()}')      
 
-            #get_streamContent_url()
             artist_Title = find_metaData_url(media_url)
             self.log.info(f'Artist from _play_station: {artist_Title}')
 
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
             # If backend cannot handle https, download the file and provide a local stream.
-            if media_url[:8] == 'https://' and not self.is_https_supported:
-                stream = self.download_media_file(media_url)
-                self.CPS_play((f"file://{stream}", mime))
-            else:
-                self.CPS_play((media_url, mime))
-            self.CPS_send_status(
+
+             self.audioservice.play(media_url)
+
+            #if media_url[:8] == 'https://' and not self.is_https_supported:
+            #    stream = self.download_media_file(media_url)
+            #    self.CPS_play((f"file://{stream}", mime))
+            #else:
+            #    self.CPS_play((media_url, mime))
+            #self.CPS_send_status(
                 # cast to str for json serialization
-                image=str(station.image_path),
-                artist=station.full_name
-            )
+            #    image=str(station.image_path),
+            #    artist=station.full_name
+            #)
             self.now_playing = station.full_name
         except ValueError as e:
             self.speak_dialog("could.not.start.the.radio.feed")
@@ -312,8 +314,6 @@ class RadioSkill(CommonPlaySkill):
                 self.curl = None
     def stop(self) -> bool:
         """Respond to system stop commands."""
-        # STOP Update GUI permanent:   -> is working
-        #self.schedule_repeating_event(self.current_time_radio, None, 0)
         if self.now_playing is None:
             return False
         self.now_playing = None
