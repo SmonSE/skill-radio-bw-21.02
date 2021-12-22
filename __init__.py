@@ -277,24 +277,16 @@ class RadioSkill(CommonPlaySkill):
             # Ensure announcement of station has finished before playing
             wait_while_speaking()
             # If backend cannot handle https, download the file and provide a local stream.
-
-            #self.audioservice.play(media_url)
-            self.CPS_play((media_url, mime))
+            if media_url[:8] == 'https://' and not self.is_https_supported:
+                stream = self.download_media_file(media_url)
+                self.CPS_play((f"file://{stream}", mime))
+            else:
+                self.CPS_play((media_url, mime))
             self.CPS_send_status(
+                # cast to str for json serialization
                 image=str(station.image_path),
                 artist=station.full_name
             )
-
-            #if media_url[:8] == 'https://' and not self.is_https_supported:
-            #    stream = self.download_media_file(media_url)
-            #    self.CPS_play((f"file://{stream}", mime))
-            #else:
-            #    self.CPS_play((media_url, mime))
-            #self.CPS_send_status(
-                # cast to str for json serialization
-            #    image=str(station.image_path),
-            #    artist=station.full_name
-            #)
             self.now_playing = station.full_name
         except ValueError as e:
             self.speak_dialog("could.not.start.the.radio.feed")
