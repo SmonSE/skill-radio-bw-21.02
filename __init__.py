@@ -19,7 +19,7 @@ from datetime import datetime
 
 from urllib.parse import quote
 from mycroft import intent_handler, AdaptIntent
-from mycroft.audio import wait_while_speaking
+from mycroft.audio import wait_while_speaking # -> issue PiCroft wait while speaking (no audio)!!!
 from mycroft.skills.common_play_skill import CommonPlaySkill, CPSMatchLevel
 from mycroft.util import get_cache_directory
 
@@ -275,9 +275,11 @@ class RadioSkill(CommonPlaySkill):
             self.log.info(f'Artist from _play_station: {artist_Title}')
 
             # Ensure announcement of station has finished before playing
-            #wait_while_speaking()
-            # If backend cannot handle https, download the file and provide a local stream.
             
+            #wait_while_speaking() -> current issue in Picroft (no audio) !!!
+            
+            # If backend cannot handle https, download the file and provide a local stream.
+
             if media_url[:8] == 'https://' and not self.is_https_supported:
                 stream = self.download_media_file(media_url)
                 self.CPS_play((f"file://{stream}", mime))
