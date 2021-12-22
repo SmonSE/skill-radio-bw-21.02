@@ -277,8 +277,7 @@ class RadioSkill(CommonPlaySkill):
             # Ensure announcement of station has finished before playing
             
             #wait_while_speaking() -> current issue in Picroft (no audio) !!!
-            time.sleep(0.3)
-            
+            time.sleep(0.6)
             # If backend cannot handle https, download the file and provide a local stream.
 
             if media_url[:8] == 'https://' and not self.is_https_supported:
