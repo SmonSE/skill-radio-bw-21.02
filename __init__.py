@@ -327,7 +327,7 @@ class RadioSkill(CommonPlaySkill):
     def stop(self) -> bool:
         """Respond to system stop commands."""
         # STOP Update GUI permanent:   -> is working
-        self.schedule_repeating_event(self.current_time_radio, None, 0)
+        #self.schedule_repeating_event(self.current_time_radio, None, 0)
         if self.now_playing is None:
             return False
         self.now_playing = None
