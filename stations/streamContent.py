@@ -35,8 +35,8 @@ def find_metaData_url(meta_url: str) -> str:
          if title:
                break
         else: 
-            sys.exit('no meta data found')
-            #LOG.info("no meta data found.")
+            #sys.exit('no meta data found')
+            LOG.info("no meta data found.")
         
     mp3Artist = title.decode(encoding, errors='replace')
     #LOG.info(f'#META#: {mp3Artist}') 

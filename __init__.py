@@ -280,13 +280,13 @@ class RadioSkill(CommonPlaySkill):
             time.sleep(1)
             # If backend cannot handle https, download the file and provide a local stream.
 
-            if media_url[:8] == 'https://' and not self.is_https_supported:
-                stream = self.download_media_file(media_url)
-                self.CPS_play((f"file://{stream}", mime))
-                self.log.info("IF CPS PLAY MEDIA_URL")
-            else:
-                self.CPS_play((media_url, mime))
-                self.log.info("#### ELSE ####")
+            #if media_url[:8] == 'https://' and not self.is_https_supported:
+            stream = self.download_media_file(media_url)
+            self.CPS_play((f"file://{stream}", mime))
+            self.log.info("### download stream for playing ###")
+            #else:
+            #    self.CPS_play((media_url, mime))
+            #    self.log.info("#### ELSE ####")
             self.CPS_send_status(
                 # cast to str for json serialization
                 #image=str(station.image_path),
