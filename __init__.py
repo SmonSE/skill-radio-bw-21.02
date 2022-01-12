@@ -241,7 +241,7 @@ class RadioSkill(CommonPlaySkill):
         """Format a the datetime into a string for GUI display."""    
         now = datetime.now() # current date and time
         timeToShow = now.strftime("%H:%M:%S")    
-        self.log.info(f'Radio Time: {timeToShow}')       
+        #self.log.info(f'Radio Time: {timeToShow}')       
         return timeToShow 
 
 
@@ -267,7 +267,7 @@ class RadioSkill(CommonPlaySkill):
             mime = find_mime_type(media_url)
 
             self.log.info(f'Station acronym _play_station: {station.acronym}')
-            self.log.info(f'Station image file _play_station: {station.image_file}')
+            #self.log.info(f'Station image file _play_station: {station.image_file}')
             self.log.info(f'Station logo url _play_station: {station.station_logo_url}')
             self.log.info(f'Radio Time _play_station: {self.current_time_radio()}')      
 
@@ -277,17 +277,17 @@ class RadioSkill(CommonPlaySkill):
             # Ensure announcement of station has finished before playing
             
             #wait_while_speaking() -> current issue in Picroft (no audio) !!!
-            time.sleep(0.6)
+            time.sleep(1)
             # If backend cannot handle https, download the file and provide a local stream.
 
-            if media_url[:8] == 'https://' and not self.is_https_supported:
-                stream = self.download_media_file(media_url)
-                self.CPS_play((f"file://{stream}", mime))
-            else:
-                self.CPS_play((media_url, mime))
+            #if media_url[:8] == 'https://' and not self.is_https_supported:
+            #    stream = self.download_media_file(media_url)
+            #    self.CPS_play((f"file://{stream}", mime))
+            #else:
+            self.CPS_play((media_url, mime))
             self.CPS_send_status(
                 # cast to str for json serialization
-                image=str(station.image_path),
+                #image=str(station.image_path),
                 artist=station.full_name
             )
             self.now_playing = station.full_name
